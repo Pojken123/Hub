@@ -1,0 +1,113 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Ore Magnet Simulator")
+local b = w:CreateFolder("AutoFarm")
+local f = w:CreateFolder("AutoBuy")
+local e = w:CreateFolder("Mix")
+local u = w:CreateFolder("Credits")
+local RebirthNamber = "1"
+local WN = "Earth"
+
+--Toggle
+f:Toggle("Upgrades",function(bool)
+    shared.toggle = bool
+    Upgrades = bool
+end)
+
+b:Toggle("Auto Farm Ores",function(bool)
+    shared.toggle = bool
+    AutoFarmOres = bool
+end)
+
+b:Dropdown("World",{"Earth","Desert","Winter","Volcano","Easter","Beach"},true,function(worldname)
+    WN = worldname
+end)
+
+b:Toggle("AutoSell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+e:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+e:Button("Use All Codes",function()
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","Dirt")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","FREEPET")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","Release")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","cLOVEr")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","LIKE100:)")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","10KEPIC")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","100FAVS")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","10KLEGENDARY")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","THXFOR1KLIKES")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","FAVORITE1000LOL")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","100DISLIKE")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","NobodyCanGuessThisCode")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","CodeTest2")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","Reboot1")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","250KVisits")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","500KVisits")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","1MVisits")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","100KMembers")
+    game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Code","HappyEggDay")
+end)
+
+e:Button("Equp Best Tools", function()
+    local player = game:GetService("Players").LocalPlayer.Name
+    game:GetService("Players"):FindFirstChild(player).Stats.Backpack.Value = "Crystal Backpack"
+    game:GetService("Players"):FindFirstChild(player).Stats.Collector.Value = "Giant Shell Magnet"
+end)
+
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if Upgrades == true then
+        local upgrade = game:GetService("Players").LocalPlayer.Upgrades:GetChildren()
+        for i,v in pairs(upgrade) do
+            game:GetService("ReplicatedStorage").Remotes.Remote2:FireServer("Upgrade",v.Name)
+        end
+    end
+    
+    if AutoFarmOres == true then
+        local player = game:GetService("Players").LocalPlayer.Name
+        game:GetService("Players"):FindFirstChild(player).Stats.CurrentWorld.Value = WN
+        local world = game:GetService("Workspace").Worlds:FindFirstChild(WN).Ores:GetChildren()
+        for i, v in pairs(world) do
+            local ore = v:GetChildren()
+            for i, v1 in pairs(ore) do
+                if AutoFarmOres == true then
+                    if v1.ClassName == "MeshPart" or v1.ClassName == "Part" and v.ClassName == "Model" then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v1.CFrame.Position + Vector3.new(0,0,0))
+                        wait(0.2)
+                    end
+                end
+            end
+        end
+    end
+    
+    if AutoSell == true then
+        game:GetService("ReplicatedStorage").Remotes.Remote1:FireServer("SellOres")
+    end
+    
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
