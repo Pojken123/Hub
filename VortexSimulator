@@ -1,0 +1,82 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Vortex Simulator")
+local i = w:CreateFolder("AutoFarm")
+local e = w:CreateFolder("AutoBuy")
+local m = w:CreateFolder("Mix")
+local u = w:CreateFolder("Credits")
+local CN = "Red"
+local ZONE = "Spawn"
+
+i:Toggle("AutoCoins",function(bool)
+    shared.toggle = bool
+    AutoCoins = bool
+end)
+
+i:Toggle("AutoSell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+e:Toggle("AutoOpenCapsule",function(bool)
+    shared.toggle = bool
+    AutoOpenCapsule = bool
+end)
+
+e:Dropdown("Red",{"Red","Blue","Yellow","Desert","Winter","Candy","Lava","Void","Beach","Toy","Old","Crimson","Toxic"},true,function(capsulename)
+    CN = capsulename
+end)
+
+m:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+m:Dropdown("Tp World",{"Spawn","Desert","Winter","Candy","Lava","Void","Beach","Toy","Old","Crimson","Toxic"},true,function(zone)
+    ZONE = zone
+    local place = game:GetService("Workspace").Zones:FindFirstChild(ZONE).Floor
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(place.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+m:Button("Open Shop",function()
+    game:GetService("Workspace").Main.Store.Touch.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+end)
+
+--Credits
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if AutoCoins == true then
+        namber = 1
+        for i=1,2 do
+            game:GetService("ReplicatedStorage").Functions.CollectCoin:FireServer(namber)
+            namber = namber + 1
+        end
+    end
+    
+    if AutoSell == true then 
+       game:GetService("ReplicatedStorage").Functions.Sell:FireServer() 
+    end
+    
+    if AutoOpenCapsule == true then
+        game:GetService("ReplicatedStorage").Functions.BuyCapsule:FireServer(CN)
+    end
+        
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
