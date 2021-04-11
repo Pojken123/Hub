@@ -1,0 +1,73 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Supernatural Simulator")
+local i = w:CreateFolder("Auto Farm")
+local u = w:CreateFolder("Credits")
+local player = game:GetService("Players").LocalPlayer.Name
+local AHN = 1
+local ARN = 1
+local AAN = 1
+
+i:Toggle("Auto Muscle",function(bool)
+    shared.toggle = bool
+    AutoMuscle = bool
+end)
+
+i:Toggle("Auto Sell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+i:Toggle("Auto Hero",function(bool)
+    shared.toggle = bool
+    AutoHero = bool
+end)
+
+i:Toggle("Auto Rank",function(bool)
+    shared.toggle = bool
+    AutoRank = bool
+end)
+
+i:Toggle("Auto Ascension",function(bool)
+    shared.toggle = bool
+    AutoAscension = bool
+end)
+
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if AutoHero == true then
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"BuyLevelUp", AHN})
+        AHN = AHN + 1
+        if AHN == 200 then
+            AHN = 1
+        end
+    end
+    
+    if AutoRank == true then
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"BuyCapacity", ARN})
+        ARN = ARN + 1
+        if ARN == 100 then
+           ARN = 1 
+        end
+    end
+    
+    if AutoAscension == true then
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"BuyRebirth", AAN})
+        AAN = AAN + 1
+        if AAN == 20 then
+           AAN = 1 
+        end
+    end
+end
