@@ -46,3 +46,7 @@ end
 if game.PlaceId == 5846394321 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/VortexSimulator')))()
 end
+--[ThunderClickers]--
+if game.PlaceId == 6256903862 then
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/ThunderClickers')))()
+end
