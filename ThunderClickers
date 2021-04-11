@@ -1,0 +1,103 @@
+--[script]--
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Thunder Clickers")
+local b = w:CreateFolder("Auto Farm")
+local q = w:CreateFolder("Auto Buy")
+local e = w:CreateFolder("Mix")
+local u = w:CreateFolder("Credits")
+local REBIRTHS = {"1","10","25","100","1K","5K","10K","50K","80K","320K","1M","5M","10M","100M","1B","5B","25B","100B","500B","1T","10T","17T","50T","1QD","25QD","100QD","300QD","1QN","20QN","69QN","200QN","900QN"}
+local R = "1"
+local EGGS = {"Basic Egg","Flying Egg","Baby Egg","Volcano Egg","Candy Egg","Le Egg","Winter Egg","Desert Egg","Robotic Egg","Beach Egg","Toxic Egg","Basic Clover Egg","Flying Clover Egg","Lucky Egg","Golden Egg","Basic Easter Egg","Epic Easter Egg","Exotic Easter Egg"}
+local E = "Basic Egg"
+local EA = "Buy1Egg"
+local EE = "Egg1"
+
+--[Toggle]--
+b:Toggle("Auto Click",function(bool)
+    shared.toggle = bool
+    AutoClick = bool
+end)
+
+b:Toggle("Auto Rebirth",function(bool)
+    shared.toggle = bool
+    AutoRebirth = bool
+end)
+
+b:Dropdown("Rebirths",{REBIRTHS[1],REBIRTHS[2],REBIRTHS[3],REBIRTHS[4],REBIRTHS[5],REBIRTHS[6],REBIRTHS[7],REBIRTHS[8],REBIRTHS[9],REBIRTHS[10],REBIRTHS[11],REBIRTHS[12],REBIRTHS[13],REBIRTHS[14],REBIRTHS[15],REBIRTHS[16],REBIRTHS[17],REBIRTHS[18],REBIRTHS[19],REBIRTHS[20],REBIRTHS[21],REBIRTHS[22],REBIRTHS[23],REBIRTHS[24],REBIRTHS[25],REBIRTHS[26],REBIRTHS[27],REBIRTHS[28],REBIRTHS[29],REBIRTHS[30],REBIRTHS[31],REBIRTHS[32]},true,function(Value)
+    for i = 1, 32 do
+        if Value == REBIRTHS[i] then
+            R = i
+        end
+    end
+end)
+
+b:Toggle("Auto Collect Gems",function(bool)
+    shared.toggle = bool
+    AutoCollectGems = bool
+end)
+
+q:Toggle("Auto Buy Eggs",function(bool)
+    shared.toggle = bool
+    AutoBuyEggs = bool
+end)
+
+q:Dropdown("Eggs",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9],EGGS[10],EGGS[11],EGGS[12],EGGS[13],EGGS[14],EGGS[15],EGGS[16],EGGS[17],EGGS[18],},true,function(Value)
+    E = Value
+end)
+
+q:Dropdown("Egg Amount",{"1","3"},true,function(Value)
+    if Value == "1" then
+        EA = "Buy1Egg"
+    elseif Value == "3" then 
+        EA = "Buy3Eggs"
+    end
+end)
+
+e:Button("Teleport To Easter Egg",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").EasterEggs:FindFirstChild(EE).CFrame.Position + Vector3.new(0,2,0))
+end)
+
+e:Dropdown("Eggs",{"Egg1","Egg2","Egg3","Egg4","Egg5","Egg6","Egg7","Egg8","Egg9","Egg10",},true,function(Value)
+    EE = Value
+end)
+
+--[Credits]--
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+--[Functions]--
+while true do
+    wait()
+    if AutoClick == true then
+        game:GetService("ReplicatedStorage").MainRE:FireServer("GiveMeClicks", nil, "HeheBoii")
+    end
+
+    if AutoRebirth == true then
+        game:GetService("ReplicatedStorage").MainRE:FireServer("Rebirth", nil, R)
+    end
+
+    if AutoCollectGems == true then
+        local gems = game:GetService("Workspace").Gems:GetChildren()
+        for i, v in pairs(gems) do 
+            if game:GetService("Workspace").Gems:FindFirstChild("Gem") then
+                local gem = v.MeshPart
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(gem.CFrame.Position + Vector3.new(0,2,0))
+                wait(.1)
+            end
+        end
+    end
+
+    if AutoBuyEggs == true then
+        game:GetService("ReplicatedStorage").MainRF:InvokeServer(EA, nil, E)
+        game:GetService("ReplicatedStorage").MainRF:InvokeServer("EquipBest")
+    end
+end
