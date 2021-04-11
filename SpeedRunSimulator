@@ -1,0 +1,124 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Speed Run Simulator")
+local b = w:CreateFolder("Auto Farm")
+local c = w:CreateFolder("Pet Stuff")
+local u = w:CreateFolder("Credits")
+local UP = "Robin Hood"
+local EP = "Robin Hood"
+local UEP = "Robin Hood"
+
+--Toggle
+b:Toggle("Auto Click",function(bool)
+    shared.toggle = bool
+    AutoClick = bool
+end)
+
+b:Toggle("Auto Rebirth",function(bool)
+    shared.toggle = bool
+    AutoRebirth = bool
+end)
+
+c:Toggle("Auto Robin Hood",function(bool)
+    shared.toggle = bool
+    AutoEgg = bool
+end)
+
+c:Toggle("Auto Upgrade",function(bool)
+    shared.toggle = bool
+    AutoUpgrade = bool
+end)
+
+c:Dropdown("Pet To Upgrade",{"Robin Hood","Robin HoodG","Robin HoodD","Robin HoodE","Robin HoodR","Zorro","ZorroG","ZorroD","ZorroE","ZorroR"},true,function(pet)
+    UP = pet
+end)
+
+c:Toggle("Equip All",function(bool)
+    shared.toggle = bool
+    EquipAll = bool
+end)
+
+c:Dropdown("Pet To Equip",{"Robin Hood","Zorro"},true,function(pet1)
+    EP = pet1
+end)
+
+c:Toggle("Unequip All",function(bool)
+    shared.toggle = bool
+    UnequipAll = bool
+end)
+
+c:Dropdown("Pet To Unequip",{"Robin Hood","Zorro"},true,function(pet2)
+    UEP = pet2
+end)
+
+c:Button("Buy Crystal Ghost",function()
+    game:GetService("ReplicatedStorage").Remotes.CanBuyEgg:InvokeServer("SuperSizePetEgg")
+end)
+
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if AutoClick == true then
+        game:GetService("ReplicatedStorage").Remotes.AddSpeed:FireServer()
+    end
+    
+    if AutoRebirth == true then
+        game:GetService("ReplicatedStorage").Remotes.Rebirth:FireServer()
+    end
+    
+    if AutoEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.CanBuyEgg:InvokeServer("RobinHoodEgg")
+    end
+    
+    if AutoUpgrade == true then
+        game:GetService("ReplicatedStorage").Remotes.UpgradePet:FireServer(UP)
+    end
+    
+    if EquipAll == true then
+        if EP == "Robin Hood" then
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("Robin Hood")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("Robin HoodG")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("Robin HoodD")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("Robin HoodE")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("Robin HoodR")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("Robin HoodB")
+        elseif EP == "Zorro" then
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("Zorro")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("ZorroG")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("ZorroD")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("ZorroE")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("ZorroR")
+            game:GetService("ReplicatedStorage").Remotes.PetEquip:FireServer("ZorroB")
+        end
+    end
+    
+    if UnquipAll == true then
+        if EP == "Robin Hood" then
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("Robin Hood")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("Robin HoodG")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("Robin HoodD")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("Robin HoodE")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("Robin HoodR")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("Robin HoodB")
+        elseif EP == "Zorro" then
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("Zorro")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("ZorroG")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("ZorroD")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("ZorroE")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("ZorroR")
+            game:GetService("ReplicatedStorage").Remotes.PetUnequip:FireServer("ZorroB")
+        end
+    end
+    
+end
