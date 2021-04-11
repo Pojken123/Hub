@@ -1,48 +1,48 @@
 --[Brain Simulator]--
-if game.PlaceIf == 5959521677 then
+if game.PlaceId == 5959521677 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/BrainSimulator')))()
 end
 --[CoinsHeroSimulator]--
-if game.PlaceIf == 5827078246 then
+if game.PlaceId == 5827078246 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/CoinsHeroSimulator')))()
 end
 --[Combat Rift]--
-if game.PlaceIf == 4952780297 then
+if game.PlaceId == 4952780297 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/CombatRift')))()
 end
 --[GiantSimulator]--
-if game.PlaceIf == 2986677229 then
+if game.PlaceId == 2986677229 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/GiantSimulator')))()
 end
 --[Ore Magnet Simulator]--
-if game.PlaceIf == 6425918578 then
+if game.PlaceId == 6425918578 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/OreMagnetSimulator')))()
 end
 --[Pet Swarm Simulator]--
-if game.PlaceIf == 6331132338 then
+if game.PlaceId == 6331132338 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/PetSwarmSimulator')))()
 end
 --[Saber Simulator]--
-if game.PlaceIf == 3823781113 then
+if game.PlaceId == 3823781113 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/SaberSimulator')))()
 end
 --[Speed Run Simulator]--
-if game.PlaceIf == 5293755937 then
+if game.PlaceId == 5293755937 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/SpeedRunSimulator')))()
 end
 --[Super Saiyan Simulator 2]--
-if game.PlaceIf == 3177438863 then
+if game.PlaceId == 3177438863 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/SuperSaiyanSimulator2')))()
 end
 --[Supernatural Simulator]--
-if game.PlaceIf == 6273865312 then
+if game.PlaceId == 6273865312 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/SupernaturalSimulator')))()
 end
 --[Ultra Hatching Simulator]--
-if game.PlaceIf == 6266368276 then
+if game.PlaceId == 6266368276 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/UltraHatchingLegends')))()
 end
 --[Vortex Simulator]--
-if game.PlaceIf == 5846394321 then
+if game.PlaceId == 5846394321 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/VortexSimulator')))()
 end
