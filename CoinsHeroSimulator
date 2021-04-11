@@ -1,0 +1,377 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Coins Hero Simulator")
+local b = library:CreateWindow("AutoFarm")
+local c = library:CreateWindow("AutoOpenEgg")
+local t = library:CreateWindow("Teleport")
+local p = w:CreateFolder("Extra")
+local u = w:CreateFolder("Credits")
+local i = b:CreateFolder("Farm")
+local f = b:CreateFolder("Buy")
+local y = c:CreateFolder("Zone1")
+local r = c:CreateFolder("Zone2")
+local j = t:CreateFolder("Zone1")
+local k = t:CreateFolder("Zone2")
+
+--Buttons
+i:Toggle("AutoCollectCoins",function(bool)
+    shared.toggle = bool
+    AutoCollectCoins = bool
+end)
+
+i:Toggle("AutoSell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+i:Toggle("AutoSpeed",function(bool)
+    shared.toggle = bool
+    AutoSpeed = bool
+end)
+
+i:Toggle("AutoCosmos",function(bool)
+    shared.toggle = bool
+    AutoCosmos = bool
+end)
+
+i:Toggle("AutoThunder",function(bool)
+    shared.toggle = bool
+    AutoThunder = bool
+end)
+
+i:Toggle("AutoTwister",function(bool)
+    shared.toggle = bool
+    AutoTwister = bool
+end)
+
+i:Toggle("AutoTremor",function(bool)
+    shared.toggle = bool
+    AutoTremor = bool
+end)
+
+i:Toggle("AutoSummoner",function(bool)
+    shared.toggle = bool
+    AutoSummoner = bool
+end)
+
+f:Toggle("AutoBuyBackPacks",function(bool)
+    shared.toggle = bool
+    AutoBuyBackPacks = bool
+end)
+
+f:Toggle("AutoBuySpeed",function(bool)
+    shared.toggle = bool
+    AutoBuySpeed = bool
+end)
+
+f:Toggle("AutoBuyCosmos",function(bool)
+    shared.toggle = bool
+    AutoBuyCosmos = bool
+end)
+
+f:Toggle("AutoBuyThunder",function(bool)
+    shared.toggle = bool
+    AutoBuyThunder = bool
+end)
+
+f:Toggle("AutoBuyTwister",function(bool)
+    shared.toggle = bool
+    AutoBuyTwister = bool
+end)
+
+f:Toggle("AutoBuyTremor",function(bool)
+    shared.toggle = bool
+    AutoBuyTremor = bool
+end)
+
+f:Toggle("AutoBuySummoner",function(bool)
+    shared.toggle = bool
+    AutoBuySummoner = bool
+end)
+
+y:Toggle("ChickenEgg",function(bool)
+    shared.toggle = bool
+    ChickenEgg = bool
+end)
+
+y:Toggle("UnicornEgg",function(bool)
+    shared.toggle = bool
+    UnicornEgg = bool
+end)
+
+y:Toggle("BullEgg",function(bool)
+    shared.toggle = bool
+    BullEgg = bool
+end)
+
+y:Toggle("DragonEgg",function(bool)
+    shared.toggle = bool
+    DragonEgg = bool
+end)
+
+y:Toggle("AlienEgg",function(bool)
+    shared.toggle = bool
+    AlienEgg = bool
+end)
+
+y:Toggle("CandyEgg",function(bool)
+    shared.toggle = bool
+    CandyEgg = bool
+end)
+
+y:Toggle("IceEgg",function(bool)
+    shared.toggle = bool
+    IceEgg = bool
+end)
+
+r:Toggle("MasterEgg",function(bool)
+    shared.toggle = bool
+    MasterEgg = bool
+end)
+
+r:Toggle("PirateEgg",function(bool)
+    shared.toggle = bool
+    PirateEgg = bool
+end)
+
+r:Toggle("AtlantisEgg",function(bool)
+    shared.toggle = bool
+    AtlantisEgg = bool
+end)
+
+r:Toggle("ZombieEgg",function(bool)
+    shared.toggle = bool
+    ZombieEgg = bool
+end)
+
+r:Toggle("JurassicEgg",function(bool)
+    shared.toggle = bool
+    JurassicEgg = bool
+end)
+
+r:Toggle("ToyLandEgg",function(bool)
+    shared.toggle = bool
+    ToyLandEgg = bool
+end)
+
+r:Toggle("OlympusEgg",function(bool)
+    shared.toggle = bool
+    OlympusEgg = bool
+end)
+
+j:Button("Spawn",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("Lobby_1")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,0,0))
+end)
+
+j:Button("UnicornZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("2")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+j:Button("BullZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("3")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+j:Button("DragonZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("4")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+j:Button("AlienZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("5")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+j:Button("CandyZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("6")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+j:Button("IceZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("7")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+k:Button("Spawn",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("Lobby_2")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+k:Button("PirateZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("9")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+k:Button("AtlantisZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("10")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+k:Button("ZombieZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("11")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+k:Button("JurassicZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("12")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+k:Button("ToyZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("13")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+k:Button("OlympusZone",function()
+    local TPLocation = game.Workspace.TP:FindFirstChild("14")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TPLocation.CFrame.Position + Vector3.new(0,20,0))
+end)
+
+p:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+--Toggles
+while true do
+wait()
+
+    if AutoCollectCoins == true then
+        game:GetService("ReplicatedStorage").CoinToPlayer:FireServer("1")
+    end
+
+    if AutoSell == true then
+        game:GetService("ReplicatedStorage").Remotes.Sell:FireServer()
+    end
+    
+    if AutoSpeed == true then
+        game:GetService("ReplicatedStorage").Remotes.Skill:FireServer("Speed")
+    end
+    
+    if AutoCosmos == true then
+        game:GetService("ReplicatedStorage").Remotes.Skill:FireServer("Cosmos", {10000000000000000000000000, 10000000000000000000000000, 10000000000000000000000000, 10000000000000000000000000}) 
+    end
+    
+    if AutoThunder == true then
+        game:GetService("ReplicatedStorage").Remotes.Skill:FireServer("Thunder")
+    end
+    
+    if AutoTwister == true then
+        game:GetService("ReplicatedStorage").Remotes.Skill:FireServer("Twister")
+    end
+    
+    if AutoTremor == true then
+        game:GetService("ReplicatedStorage").Remotes.Skill:FireServer("Tremor", {10000000000000000000000000, 10000000000000000000000000, 10000000000000000000000000, 10000000000000000000000000})
+    end
+    
+    if AutoSummoner == true then
+        game:GetService("ReplicatedStorage").Remotes.Skill:FireServer("Summoner")
+    end
+    
+    if AutoBuyBackPacks == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyAllBackpacks:InvokeServer()
+    end
+    
+    if AutoBuySpeed == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyAllSkills:InvokeServer("Speed")
+    end
+    
+    if AutoBuyCosmos == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyAllSkills:InvokeServer("Cosmos")
+    end
+
+    if AutoBuyThunder == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyAllSkills:InvokeServer("Thunder")
+    end
+
+    if AutoBuyTwister == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyAllSkills:InvokeServer("Twister")
+    end
+    
+    if AutoBuyTremor == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyAllSkills:InvokeServer("Tremor")
+    end
+    
+    if AutoBuySummoner == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyAllSkills:InvokeServer("Summoner")
+    end
+
+    if ChickenEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("1")
+    end
+    
+    if UnicornEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("2")
+    end
+
+    if BullEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("3")
+    end
+
+    if DragonEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("4")
+    end
+
+    if AlienEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("5")
+    end
+    
+    if CandyEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("6")
+    end
+    
+    if IceEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("7")
+    end
+    
+    if MasterEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("8")
+    end
+    
+    if PirateEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("9")
+    end
+
+    if AtlantisEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("10")
+    end
+
+    if ZombieEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("11")
+    end
+    
+    if JurassicEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("12")
+    end
+
+    if ToyLandEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("13")
+    end
+    
+    if OlympusEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.BuyPets:InvokeServer("14")
+    end
+
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+
+end
