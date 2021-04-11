@@ -1,0 +1,288 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Saber Simulator")
+local b = w:CreateFolder("AutoFarm")
+local t = w:CreateFolder("AutoBuy")
+local e = w:CreateFolder("Mix")
+local u = w:CreateFolder("Credits")
+local name = 0
+local CE = "Basic Egg"
+
+--Toggle
+
+b:Toggle("AutoClick",function(bool)
+    shared.toggle = bool
+    AutoClick = bool
+end)
+
+b:Toggle("AutoEggs",function(bool)
+    shared.toggle = bool
+    AutoEggs = bool
+end)
+
+b:Toggle("AutoSell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+b:Toggle("AutoBoss",function(bool)
+    shared.toggle = bool
+    AutoBoss = bool
+end)
+
+b:Toggle("AutoKing",function(bool)
+    shared.toggle = bool
+    AutoKing = bool
+end)
+
+t:Toggle("Classes",function(bool)
+    shared.toggle = bool
+    Classes = bool
+end)
+
+t:Toggle("Auras",function(bool)
+    shared.toggle = bool
+    Auras = bool
+end)
+
+
+t:Toggle("PetAuras",function(bool)
+    shared.toggle = bool
+    PetAuras = bool
+end)
+
+
+t:Toggle("Swords",function(bool)
+    shared.toggle = bool
+    Swords = bool
+end)
+
+
+t:Toggle("Backpacks",function(bool)
+    shared.toggle = bool
+    Backpacks = bool
+end)
+
+
+t:Toggle("JumpBoost",function(bool)
+    shared.toggle = bool
+    JumpBoosts = bool
+end)
+
+
+t:Toggle("BossHit",function(bool)
+    shared.toggle = bool
+    BossHit = bool
+end)
+
+t:Toggle("AutoEgg",function(bool)
+    shared.toggle = bool
+    AutoEgg = bool
+end)
+
+t:Dropdown("Egg",{"Basic Egg","Wooden Egg","ReinForced Egg","Ancient","Egg of life","Glory Egg","Dominus Egg","Ruby Egg","Alpha Egg","Snow Egg","Christmas Egg","Ice Egg","Reaper Egg","Nature Egg","Winter Egg","Valk Egg","Fire Egg","Food Egg","Dragon Egg","Star Egg","Cow Egg","Flame Egg","Water Egg","Ooga Egg","Matrix Egg","Round Egg","Thanksgiving Egg","Shadow Egg","Pink Egg","Candy Egg","Rushed Egg","Onetap Egg","Swag Egg","Triangle Egg","Square Egg","Cringe Egg","Boris Egg","Phantom Egg","Bussiness Egg","Egg Egg","Birthday Egg","Easter Egg","Switch Egg","America Egg","British Egg","Erick Egg","Henry Egg","Lazy Dev Egg","Puppet Egg","Piggy Egg","Easy Egg","Guts Egg","Bruh Egg","Griffith Egg","Casca Egg","Femto Egg","Pippin Egg","Dog Egg","Bingo Egg","M Egg","A Egg","B Egg","C Egg","D Egg","F Egg","E Egg","H Egg","G Egg","I Egg","J Egg","K Egg","L Egg","N Egg","O Egg","P Egg","Q Egg","R Egg","S Egg","T Egg","U Egg","V Egg","W Egg","X Egg","Y Egg","Z Egg","AH Egg","AA Egg","AB Egg","AC Egg","AD Egg","AE Egg","AF Egg","AG Egg","AJ Egg","AI Egg"},true,function(ce)
+    CE = ce
+end)
+
+e:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+--butons
+--player stuff
+e:Button("infjumps",function()
+    InfiniteJumpEnabled = true
+    game:GetService("UserInputService").JumpRequest:connect(function()
+        if InfiniteJumpEnabled then
+            game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        end
+    end)
+end)
+
+e:Button("Press Q To Tp",function()
+    game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(k)
+        if k == 'q' then
+            game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer:GetMouse().hit.p)
+        end
+    end)
+end)
+
+--Credits
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if AutoBoss == true then
+        if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid") then
+            if not workspace:FindFirstChild("Boss") then
+                game.Workspace.Gravity = 50
+            end
+        end
+        if workspace:FindFirstChild("Boss") then
+            if workspace.Boss:FindFirstChild("Head") then
+                if workspace.Boss.Health.Value >= 0 then
+                    if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid") then
+                        if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart") then
+                            local tool = game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
+                            game.Workspace.Gravity = 1
+                            game:service'VirtualUser':ClickButton1(Vector2.new())
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(workspace.Boss.Head.CFrame.Position + Vector3.new(0,3,0))
+                        end
+                    end
+                end
+            end
+        end
+    else
+        game.Workspace.Gravity = 50
+    end
+    
+    if AutoKing == true then
+        if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid") then
+            wait(0.5)
+            game.Players.LocalPlayer.Character:MoveTo(Vector3.new(791.358, 252.105, 32.121))
+        end
+    end
+    
+    if AutoClick == true then
+        if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid") then
+            local tool = game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+            game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
+            game:GetService("ReplicatedStorage").Events.Clicked:FireServer()
+        end
+    end
+    
+    if AutoEggs == true then
+        wait(.1)
+        local eggs = game:GetService("Workspace").CandyHolder:GetChildren()
+        local egg = game:GetService("Workspace").CandyHolder:FindFirstChild("Egg")
+        if egg then
+            name = name + 1
+            egg.Name = name
+            local egg1 = game:GetService("Workspace").CandyHolder:FindFirstChild(name)
+            game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(egg1.CFrame.Position + Vector3.new(3.4,0,0))
+        else
+            name = 0
+            for i, v1 in pairs(eggs) do
+                v1.Name = "Egg"
+            end
+            print("Hello")
+        end
+    end
+    
+    if AutoSell == true then
+         if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid") then
+            game.Players.LocalPlayer.Character:MoveTo(Vector3.new(530, 116, 155))
+            wait(1)
+            game.Players.LocalPlayer.Character:MoveTo(Vector3.new(550, 116, 30))
+            wait(1)
+        end
+    end
+    
+    if Classes == true then
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Noob)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Apprentice)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Soldier)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Berserker)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Assassin)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Warrior)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Paladin)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Warlord)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Saber)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Titan)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Cyborg)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Master)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Phantom)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Shadow)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Ghoul)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Tempest)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Elementalist)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Terminator)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Demigod)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Dark Ninja"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Warlock)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Overlord)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.ArchAngel)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Wraith)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Deity)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Nemesis)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Executioner)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Beast)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Colossus)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Zeus)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Elf)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Santa)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Corruptor)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Prestige)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Caster)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Cyclops)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.King)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Hacker)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Angel)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Cerberus)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Minotaur)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Yeti)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Samurai)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Baron)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Detective)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Red Baron"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Gladiator)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Witch)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Purple Baron"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Guard)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Shadow Titan"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Superhuman)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Brain)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Shadow Guard"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Shadow Gladiator"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Red Elf"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Gingerbread)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Ninja Warrior"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Snowman)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes["Lord Of Death"])
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Demonic)
+        game:GetService("ReplicatedStorage").Events.BuyItem:FireServer(game:GetService("ReplicatedStorage").ShopItems.Classes.Alien)
+    end
+        
+    if Auras == true then
+        game:GetService("ReplicatedStorage").Events.BuyAll:FireServer("Auras")
+    end
+        
+    if PetAuras == true then
+        game:GetService("ReplicatedStorage").Events.BuyAll:FireServer("PetAuras")
+    end
+        
+    if Swords == true then
+        game:GetService("ReplicatedStorage").Events.BuyAll:FireServer("Swords")
+    end
+        
+    if Backpacks == true then
+        game:GetService("ReplicatedStorage").Events.BuyAll:FireServer("Backpacks")
+    end
+        
+    if JumpBoosts == true then
+        game:GetService("ReplicatedStorage").Events.BuyAll:FireServer("JumpBoosts")
+    end
+        
+    if BossHit == true then
+        game:GetService("ReplicatedStorage").Events.BuyAll:FireServer("BossBoosts")
+    end
+    
+    if AutoEgg == true then
+        local ce1 = game:GetService("ReplicatedStorage").Eggs:FindFirstChild(CE)
+        game:GetService("ReplicatedStorage").Events.HatchEggs:InvokeServer(ce1, 1)
+    end
+        
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
