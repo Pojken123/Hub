@@ -1,0 +1,147 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Ultra Hatching Legends")
+local b = w:CreateFolder("Auto Farm")
+local f = w:CreateFolder("Auto Egg")
+local e = w:CreateFolder("Extras")
+local u = w:CreateFolder("Credits")
+local CE = "Common Egg"
+local amount = "3"
+local EE = "Egg1"
+
+--Toggle
+b:Toggle("Auto Collect Flowers",function(bool)
+    shared.toggle = bool
+    AutoCollectFlowers = bool
+end)
+
+b:Toggle("Auto Collect Candys",function(bool)
+    shared.toggle = bool
+    AutoCollectCandys = bool
+end)
+
+b:Toggle("Auto Collect Clovers",function(bool)
+    shared.toggle = bool
+    AutoCollectClovers = bool
+end)
+
+b:Toggle("Auto Collect Gems",function(bool)
+    shared.toggle = bool
+    AutoCollectGem = bool
+end)
+
+f:Toggle("Auto Egg",function(bool)
+    shared.toggle = bool
+    AutoEgg = bool
+end)
+
+f:Dropdown("Choose Amount",{"1","3"},true,function(namber)
+    amount = namber
+end)
+
+f:Dropdown("Choose Egg",{"Common Egg","Inferno Egg","Toxic Egg","Nature Egg","Space Egg","Mushroom Egg","Plasma Egg","Crystal Egg","Gem Egg","Cream Egg","Gummy Egg","Blueberry Egg","Beach Egg","Blossom Egg","Flower Egg","Vine Egg","Easter Tophat Egg","Carrot Egg"},true,function(egg)
+    CE = egg
+end)
+
+e:Button("Egg Hunt",function()
+    local egg1 = game:GetService("Workspace").EggHunt:FindFirstChild(EE)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(egg1.CFrame.Position + Vector3.new(0,5,0))
+end)
+
+e:Dropdown("Egg Hunt",{"Egg1","Egg2","Egg3","Egg4","Egg5"},true,function(eegg)
+    EE = eegg
+end)
+
+e:Button("Activate All Boosts",function()
+    local player = game:GetService("Players").LocalPlayer.Name
+    local boosts = game:GetService("Players"):FindFirstChild(player).Boosts:GetChildren()
+    for i,v in pairs(boosts) do
+        v.Value = 100000
+    end
+end)
+
+e:Toggle("Anti Afk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if AutoCollectFlowers == true then
+        local folder = game:GetService("Workspace"):GetChildren()
+        for i,v in pairs(folder) do
+            if v.ClassName == "Model" then
+                local folder2 = v:GetChildren()
+                for i,v2 in pairs(folder2) do
+                    if v2.ClassName == "MeshPart" and v2.Name == "a" or v2.Name == "b" then
+                        v2.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+                    end
+                end
+            end
+        end
+    end
+    
+    if AutoCollectCandys == true then
+        local candy = game:GetService("Workspace")["Candy World"].Collectable:GetChildren()
+        for i,v in pairs(candy) do
+            if v.Name == "Part" then
+                v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+            end
+        end
+    end
+    
+    if AutoCollectClovers == true then
+        local clover = game:GetService("Workspace")["Event Area"]:GetChildren()
+        for i,v in pairs(clover) do
+            if v.Name == "Head" then
+                v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+            end
+        end
+    end
+    
+    if AutoCollectGem == true then
+        local gems1 = game.Workspace:GetChildren()
+        for i,v in pairs(gems1) do
+            if v.Name == "Collectable Gem" then
+                v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+            end
+        end
+        
+        for i,v in pairs(gems1) do
+            if v.Name == "Model" then
+                local gems2 = v:GetChildren()
+                for i,v1 in pairs(gems2) do
+                    if v1.Name == "Collectable Gem" or v.Name == "Union" then
+                        v1.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+                    end
+                end
+            end
+        end
+    end
+    
+    if AutoEgg == true then
+        local egg = game:GetService("Workspace").Eggs:FindFirstChild(CE).View
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(egg.CFrame.Position + Vector3.new(0,10,0))
+        game:GetService("ReplicatedStorage").GameClient.Events.RemoteFunction.BuyEgg:InvokeServer(CE, "Buy" .. amount)
+    end
+    
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
