@@ -1,0 +1,210 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Giant Simulator")
+local b = w:CreateFolder("Auto Farm")
+local s = w:CreateFolder("Crates")
+local d = w:CreateFolder("Quests")
+local e = w:CreateFolder("Mix")
+local u = w:CreateFolder("Credits")
+local CB = "borock"
+local WC = "Common"
+local SC = "Common"
+local PC = "Common"
+local AC = "Common"
+
+--Toggles
+b:Toggle("Auto Eggs",function(bool)
+    shared.toggle = bool
+    AutoEggs = bool
+end)
+
+b:Toggle("Auto Click",function(bool)
+    shared.toggle = bool
+    AutoClick = bool
+end)
+
+b:Toggle("Auto Gnomes",function(bool)
+    shared.toggle = bool
+    AutoGnomes = bool
+end)
+
+b:Toggle("Auto Boss",function(bool)
+    shared.toggle = bool
+    AutoBoss = bool
+end)
+
+b:Dropdown("Boss",{"Borock","Demon King"},true,function(bossname)
+    if bossname == "Borock" then
+        CB = "borock"
+    end
+    
+    if bossname == "Demon King" then
+        CB = "demonking"
+    end
+end)
+
+s:Toggle("Auto Weapon Crate",function(bool)
+    shared.toggle = bool
+    AutoWeaponCrate = bool
+end)
+
+s:Dropdown("Weapon Crate",{"Common","Rare","Epic","Legendary","Mythic"},true,function(crate)
+    WC = crate
+end)
+
+s:Toggle("Auto Skin Crate",function(bool)
+    shared.toggle = bool
+    AutoSkinCrate = bool
+end)
+
+s:Dropdown("Skin Crate",{"Common","Rare","Epic","Legendary","Mythic"},true,function(crate)
+    SC = crate
+end)
+
+s:Toggle("Auto Pet Crate",function(bool)
+    shared.toggle = bool
+    AutoPetCrate = bool
+end)
+
+s:Dropdown("Pet Crate",{"1","2","3","4","5","6"},true,function(crate)
+    PC = crate
+end)
+
+s:Toggle("Auto Artifact Crate",function(bool)
+    shared.toggle = bool
+    AutoArtifactCrate = bool
+end)
+
+s:Dropdown("Artifact Crate",{"1","2","3","4"},true,function(crate)
+    AC = crate
+end)
+
+d:Toggle("Auto Start Quest",function(bool)
+    shared.toggle = bool
+    AutoStartQuest = bool
+end)
+
+d:Button("Collect Golden Eggs",function()
+    local eggs = game:GetService("Workspace"):GetChildren()
+    for i, v in pairs(eggs) do
+        if v.Name == "Egg" and v.ClassName == "MeshPart" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.CFrame.Position + Vector3.new(0,0,0))
+            wait(.1)
+        end
+    end
+end)
+
+e:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if AutoEggs == true then
+        local egg = game:GetService("Workspace").Scene:GetChildren()
+        for i, v in pairs(egg) do
+            if string.match(v.Name, "147") then
+                local resourcenode = v:GetChildren()
+                for i, v1 in pairs(resourcenode) do
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v1.CFrame.Position + Vector3.new(0,2,0))
+                    wait(.1)
+                end
+            end
+        end
+    end
+    
+    if AutoClick == true then
+        game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.WeaponAttackStart:FireServer()
+        game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.WeaponAnimComplete:FireServer()
+    end
+    
+    if AutoStartQuest == true then
+        game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.StartQuestRequest:InvokeServer()
+        game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.EndQuestRequest:InvokeServer()
+    end
+    
+    if AutoGnomes == true then
+        local gnomes = game:GetService("Workspace").NPC.Gnomes:GetChildren()
+        for i, v in pairs(gnomes) do
+            local gnome = v.HumanoidRootPart
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(gnome.CFrame.Position + Vector3.new(0,0,0))
+            wait()
+        end
+        game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.WeaponAttackStart:FireServer()
+        game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.WeaponAnimComplete:FireServer()
+    end
+    
+    if AutoBoss == true then
+        if game:GetService("Workspace").NPC.DemonKing:FindFirstChild("DemonKing") and CB == "demonking"then
+            local demonking = game:GetService("Workspace").NPC.DemonKing.DemonKing.HumanoidRootPart
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(demonking.CFrame.Position + Vector3.new(0,0,0))
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.WeaponAttackStart:FireServer()
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.WeaponAnimComplete:FireServer()
+            wait()
+        end
+        if game:GetService("Workspace").NPC.Boss:FindFirstChild("Borock") and CB == "borock" then
+            local borock = game:GetService("Workspace").NPC.Boss.Borock.HumanoidRootPart
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(borock.CFrame.Position + Vector3.new(0,0,0))
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.WeaponAttackStart:FireServer()
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.WeaponAnimComplete:FireServer()
+            wait()
+        end 
+    end
+    
+    if AutoWeaponCrate == true then
+        if WC == "Common" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenCrate:InvokeServer("t1_wpn_crate")
+        end
+        if WC == "Rare" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenCrate:InvokeServer("t2_wpn_crate")
+        end
+        if WC == "Epic" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenCrate:InvokeServer("t3_wpn_crate")
+        end
+        if WC == "Legendary" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenLegendaryCrate:InvokeServer("weapon")
+        end
+        if WC == "Mythic" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenMythicCrate:InvokeServer("weapon")
+        end
+    end
+    
+    if AutoSkinCrate == true then
+        if SC == "Common" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenCrate:InvokeServer("t1_skin_crate")
+        end
+        if SC == "Rare" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenCrate:InvokeServer("t2_skin_crate")
+        end
+        if SC == "Epic" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenCrate:InvokeServer("t3_skin_crate")
+        end
+        if SC == "Legendary" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenLegendaryCrate:InvokeServer("skin")
+        end
+        if SC == "Mythic" then
+            game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenMythicCrate:InvokeServer("skin")
+        end
+    end
+    
+    if AutoPetCrate == true then
+        game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenPetCrate:InvokeServer(PC)
+    end
+    
+    if AutoArtifactCrate == true then
+        game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.GameService.OpenPetCrate:InvokeServer(AC)
+    end
+end
