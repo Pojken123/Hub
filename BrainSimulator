@@ -1,0 +1,241 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Brain Simulator")
+local b = w:CreateFolder("AutoFarm")
+local f = w:CreateFolder("AutoBuy")
+local d = w:CreateFolder("OpenEgg")
+local e = w:CreateFolder("Mix")
+local u = w:CreateFolder("Credits")
+local CE = "Starter Egg"
+local S = "16"
+
+--Toggle
+b:Toggle("AutoClick",function(bool)
+    shared.toggle = bool
+    AutoClick = bool
+end)
+
+b:Toggle("AutoSell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+b:Toggle("AutoTpGems",function(bool)
+    shared.toggle = bool
+    AutoTpGems = bool
+end)
+
+b:Toggle("AutoTpEggs",function(bool)
+    shared.toggle = bool
+    AutoTpEggs = bool
+end)
+
+b:Toggle("AutoClaimQuests",function(bool)
+    shared.toggle = bool
+    AutoCollectQuests = bool
+end)
+
+b:Toggle("AutoSpinWheel",function(bool)
+    shared.toggle = bool
+    AutoSpinWheel = bool
+end)
+
+f:Toggle("Potions",function(bool)
+    shared.toggle = bool
+    Potions = bool
+end)
+
+f:Toggle("Dna",function(bool)
+    shared.toggle = bool
+    Dna = bool
+end)
+
+f:Toggle("Rank",function(bool)
+    shared.toggle = bool
+    Rank = bool
+end)
+
+f:Toggle("Double Jumps",function(bool)
+    shared.toggle = bool
+    DoubleJumps = bool
+end)
+
+d:Toggle("Open",function(bool)
+    shared.toggle = bool
+    Open = bool
+end)
+
+d:Dropdown("Egg",{"Basic Egg","Sky Egg","Galaxy Egg","Evil Corp Egg","Rephaite Egg","Inferno Egg","Omega Egg","Cake Egg","Bunny Egg"},true,function(egg)
+    CE = egg
+end)
+
+e:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+e:Button("Speed",function()
+    game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = S
+end)
+
+e:Box("Speed","32",function(value)
+    S = value
+end)
+
+e:Button("Inf Jumps",function()
+    game:GetService("UserInputService").JumpRequest:connect(function()
+    	game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+    end)
+end)
+
+e:Button("Unlock All Islands",function()
+    local islands = game:GetService("Workspace").Islands:GetChildren()
+    for i,v in pairs(islands) do
+        if v.ClassName == "Part" then
+            wait(0.5)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.CFrame.Position + Vector3.new(0,0,0))
+        end
+    end
+end)
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if Rank == true then
+        local ranks = game:GetService("Players").LocalPlayer.PlayerGui.GUI.Upgrade.Frame.Window.Screens.Ranks:GetChildren()
+        for i,v in pairs(ranks) do
+            game:GetService("ReplicatedStorage").Systems.Upgrade.BuyUpgrade:InvokeServer(v.Name)
+        end
+    end
+    
+    if Potions == true then
+        game:GetService("ReplicatedStorage").Systems.Upgrade.BuyAllUpgrades:InvokeServer("Potions")
+    end
+    
+    if DoubleJumps == true then
+        game:GetService("ReplicatedStorage").Systems.Upgrade.BuyUpgrade:InvokeServer("x2 Double Jumps")
+    end
+
+    if Open == true then
+        game:GetService("ReplicatedStorage").Systems.Egg.OpenEgg:InvokeServer(CE, 1)
+        game:GetService("Players").LocalPlayer.SessionData.OpenEggDebounce.Value = false
+    end
+    
+    if Dna == true then
+        game:GetService("ReplicatedStorage").Systems.Upgrade.BuyAllUpgrades:InvokeServer("Dna")
+    end
+    
+    if AutoCollectQuests == true then
+        local quests = game:GetService("Players").LocalPlayer.PlayerGui.GUI.Quest.QuestsUI.QuestsReadyToClaim:GetChildren()
+        for i,v in pairs(quests) do
+            local quest = v:GetChildren()
+            for i,v1 in pairs(quest) do
+                game:GetService("ReplicatedStorage").Systems.Quest.ClaimBadge:FireServer(v.Name,v1.Name)
+            end
+        end
+        
+        local Daily = game:GetService("Players").LocalPlayer.PlayerData.Quests.Tier1.List:GetChildren()
+        for i,v in pairs(Daily) do
+            game:GetService("ReplicatedStorage").Systems.Quest.ClaimQuest:FireServer(game:GetService("Players").LocalPlayer.PlayerData.Quests.Tier1.List[v.Name])
+        end
+                
+        local Weekly = game:GetService("Players").LocalPlayer.PlayerData.Quests.Tier2.List:GetChildren()
+        for i,v in pairs(Weekly) do
+            game:GetService("ReplicatedStorage").Systems.Quest.ClaimQuest:FireServer(game:GetService("Players").LocalPlayer.PlayerData.Quests.Tier2.List[v.Name])
+        end
+    end
+    
+    if AutoSell == true then
+        if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart") then
+            game:GetService("Workspace").Islands.Home.SellZone.SellTouch.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+        end
+    end
+    
+    if AutoClick == true then
+        game:GetService("ReplicatedStorage").Systems.Clicking.RemoteEvents[game.Players.LocalPlayer.Name]:FireServer()
+    end
+    
+    if AutoSpinWheel == true then
+        game:GetService("ReplicatedStorage").Modules.Objects.SpinWheel.Buy:InvokeServer("EasterSpinWheel", 5)
+    end
+
+    if AutoTpGems == true then
+        local Zone = game:GetService("Workspace").CurrencyZones:FindFirstChild("The Nether"):GetChildren()
+        for i,v1 in pairs(Zone) do
+            if v1.Name == "Drops" then
+                local Drops1 = v1:GetChildren()
+                for i,v2 in pairs(Drops1) do
+                    if v1:FindFirstChild(v2.Name) then
+                        local thepart = v2:GetChildren()
+                        for i,v3 in pairs(thepart) do
+                            if AutoTpGems == true then
+                                if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart") then
+                                    if v3.ClassName == "MeshPart" or v3.ClassName == "Part" then
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v3.CFrame.Position + Vector3.new(0,20,0))
+                                        wait(2)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    if AutoTpEggs == true then
+        local Zone = game:GetService("Workspace").CurrencyZones:FindFirstChild("Easter World"):GetChildren()
+        for i,v1 in pairs(Zone) do
+            if v1.Name == "Drops" then
+                local Drops1 = v1:GetChildren()
+                for i,v2 in pairs(Drops1) do
+                    if v1:FindFirstChild(v2.Name) then
+                        if v2.Name == "Single" then
+                            local thepart = v2:GetChildren()
+                            for i,v3 in pairs(thepart) do
+                                if AutoTpEggs == true then
+                                    if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart") then
+                                        if v3.ClassName == "MeshPart" or v3.ClassName == "Part" then
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v3.CFrame.Position + Vector3.new(0,20,0))
+                                            wait(2)
+                                        end
+                                    end
+                                end
+                            end
+                        elseif v2.Name == "Safe" then
+                            local thepart = v2:FindFirstChild("EasterEgg"):GetChildren()
+                            for i,v3 in pairs(thepart) do
+                                if AutoTpEggs == true then
+                                    if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("HumanoidRootPart") then
+                                        if v3.ClassName == "MeshPart" or v3.ClassName == "Part" then
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v3.CFrame.Position + Vector3.new(0,20,0))
+                                            wait(2)
+                                        end 
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
