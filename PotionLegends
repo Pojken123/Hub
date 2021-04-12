@@ -1,0 +1,122 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Potion Legends")
+local b = w:CreateFolder("AutoFarm")
+local f = w:CreateFolder("AutoBuy")
+local e = w:CreateFolder("Mix")
+local u = w:CreateFolder("Credits")
+local EGGS = {"Common","Epic","Rare","Grass","100K","Candy","Desert","Ocean","Toy"}
+local E = "Common"
+
+--Toggle
+b:Toggle("AutoClicker",function(bool)
+    shared.toggle = bool
+    AutoClicker = bool
+end)
+
+b:Toggle("AutoSell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+b:Toggle("AutoCollectGems",function(bool)
+    shared.toggle = bool
+    AutoCollectGems = bool
+end)
+
+f:Toggle("Potion",function(bool)
+    shared.toggle = bool
+    Potion = bool
+end)
+
+f:Toggle("DNA",function(bool)
+    shared.toggle = bool
+    DNA = bool
+end)
+
+f:Toggle("AutoOpenEgg",function(bool)
+    shared.toggle = bool
+    AutoOpenEgg = bool
+end)
+
+f:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9]},true,function(Value)
+    E = Value
+end)
+
+e:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+e:Button("Collect All Chests",function()
+    for i,v in pairs(game:GetService("Workspace").Map.AllChestsTouch:GetChildren()) do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.CFrame.Position + Vector3.new(0,0,0))
+        wait(0.5)
+    end
+end)
+
+e:Button("Unlock All Islands",function()
+    for i,v in pairs(game:GetService("Workspace").Map.Islands:GetChildren()) do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Floor.CFrame.Position + Vector3.new(0,0,0))
+        wait(0.5)
+    end
+end)
+--Credits
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    if DNA == true then
+        game:GetService("ReplicatedStorage").RSEvents.BuyShopItems:InvokeServer("BuyAll","DNA","BuyAll")
+    end
+    
+    if Potion == true then
+        game:GetService("ReplicatedStorage").RSEvents.BuyShopItems:InvokeServer("BuyAll","Potions","BuyAll")
+    end
+    
+    if AutoClicker == true then
+       game:GetService("ReplicatedStorage").RSEvents.GetPotionData:FireServer() 
+    end
+    
+    if AutoSell == true then
+        for i,v in pairs(game:GetService("Workspace").Map.AllSells:GetChildren()) do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.CFrame.Position + Vector3.new(0,0,100))
+            wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.CFrame.Position + Vector3.new(0,0,0))
+        end
+    end
+    
+    if AutoCollectGems == true then
+        for i,v in pairs(game:GetService("Workspace").Map.GemsSpawn:GetChildren()) do
+            if v.ClassName == "Part" then
+                v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+            end
+            if v.ClassName == "Model" then
+                for i,v1 in pairs(v:GetChildren()) do
+                    v1.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+                end
+            end
+        end
+    end
+
+    if AutoOpenEgg == true then
+        game:GetService("ReplicatedStorage").RSEvents.PetsStuff.RemoteFunction.BuyEgg:InvokeServer(E, "Buy1")
+    end
+    
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
