@@ -67,7 +67,7 @@ b:Dropdown("Enemy",{ENEMIES[1],ENEMIES[2],ENEMIES[3],ENEMIES[4],ENEMIES[5],ENEMI
         EZ = "Zone8"
     end
     if enemy == ENEMIES[25] or enemy == ENEMIES[26] or enemy == ENEMIES[27] then
-        AE = enemyENEMIES
+        AE = enemy
         EZ = "Zone9"
     end
     if enemy == ENEMIES[28] or enemy == ENEMIES[29] or enemy == ENEMIES[30] then
