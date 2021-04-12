@@ -52,3 +52,7 @@ end
 if game.PlaceId == 6256903862 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/ThunderClickers')))()
 end
+--[Potion Legends]--
+if game.PlaceId == 6093650231 then
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/PotionLegends')))()
+end
