@@ -7,9 +7,12 @@ local u = w:CreateFolder("Credits")
 local FZ = "Zone1"
 local EZ = "Zone1"
 local AE = "Evil Shroom"
+local BZ = "Zone2B1"
+local AB = "Naga"
 local E = 1
 local ENEMIES = {"Evil Shroom","Evil Yeti","Deermon","Creepy Cat","Enchanted Cobra","Cursed Mummy","Wicked Wolf","Evil Frozen Yeti","Dark Spike","Creepy Slime","Deadly Elephant","Evil Ogre","Dark Cloud","Enchanted Macaw","Crazy Unicorn","Raging Lion","Mad Golum","Forbidden Dragon","Cursed Medusa","Dark Griffin","Evil Minotaur","Angry Crab","Deadly Octopus","Evil Starfish","Dark Planet","Menacing Sting","Vile Bat","Cursed Moai","Mad Penguin","Terror Tree"}
 local EGGS = {"Forest Egg1","Forest Egg2","Forest Egg3","Desert Egg1","Desert Egg2","Desert Egg3","Frozen Egg1","Frozen Egg2","Frozen Egg3","Swamp Egg1","Swamp Egg2","Swamp Egg3","Sky Egg1","Sky Egg2","Sky Egg3","Magma Egg1","Magma Egg2","Magma Egg3","Atlantis Egg1","Atlantis Egg2","Atlantis Egg3","Aqua Egg1","Aqua Egg2","Aqua Egg3","Cosmos Egg1","Cosmos Egg2","Cosmos Egg3","Tiki Island Egg1","Tiki Island Egg2","Tiki Island Egg3","Egg Of Oblivion","Mythical Egg","Legendary Egg","Naga Boss Egg","Lava Monster Boss Egg","Ghost Pirate Boss Egg","Tiki Boss Egg"}
+local BOSSES = {"Naga","Lava Monster","Ghost Pirate","Tiki Monster"}
 
 --Toggles
 b:Toggle("Auto Collect Food",function(bool)
@@ -70,6 +73,31 @@ b:Dropdown("Enemy",{ENEMIES[1],ENEMIES[2],ENEMIES[3],ENEMIES[4],ENEMIES[5],ENEMI
     if enemy == ENEMIES[28] or enemy == ENEMIES[29] or enemy == ENEMIES[30] then
         AE = enemy
         EZ = "Zone10"
+    end
+end)
+
+b:Toggle("Auto Attack Bosses",function(bool)
+    shared.toggle = bool
+    AutoAttackBosses = bool
+end)
+
+b:Dropdown("Boss",{BOSSES[1],BOSSES[2],BOSSES[3],BOSSES[4]},true,function(Value)
+    AB = Value
+
+    if Value == BOSSES[1] then
+        BZ = "Zone2B1"
+    end
+
+    if Value == BOSSES[2] then
+        BZ = "Zone5B1"
+    end
+
+    if Value == BOSSES[3] then
+        BZ = "Zone8B1"
+    end
+
+    if Value == BOSSES[4] then
+        BZ = "Zone10B1"
     end
 end)
 
@@ -136,8 +164,20 @@ while true do
     if AutoAttackEnemies == true then
         local pets = game:GetService("Players").LocalPlayer.Character.Pets:GetChildren()
         for i, v in pairs(pets) do
-            game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones[EZ].Enemies:FindFirstChild(AE), v)
-            wait(.2)
+            if workspace.Zones[EZ].Enemies:FindFirstChild(AE) and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") then
+                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones[EZ].Enemies:FindFirstChild(AE), v)
+                wait(.2)
+            end
+        end
+    end
+
+    if AutoAttackBosses == true then
+        local pets = game:GetService("Players").LocalPlayer.Character.Pets:GetChildren()
+        for i, v in pairs(pets) do
+            if workspace.Zones[BZ].Enemies:FindFirstChild(AB) and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") then
+                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones[BZ].Enemies:FindFirstChild(AB), v)
+                wait()
+            end
         end
     end
     
