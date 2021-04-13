@@ -2,13 +2,20 @@ local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))(
 local w = library:CreateWindow("Pet Swarm Simulator")
 local b = w:CreateFolder("Auto Farm")
 local p = w:CreateFolder("Auto Eggs")
+local d = w:CreateFolder("Farm Bosses")
 local e = w:CreateFolder("Extras")
 local u = w:CreateFolder("Credits")
 local FZ = "Zone1"
 local EZ = "Zone1"
 local AE = "Evil Shroom"
-local BZ = "Zone2B1"
-local AB = "Naga"
+local NAGA = false
+local LAVAMONSTER = false
+local GHOSTPIRATE = false
+local TIKIMONSTER = false
+local BOSS1 = true
+local BOSS2 = false
+local BOSS3 = false
+local BOSS4 = false
 local E = 1
 local ENEMIES = {"Evil Shroom","Evil Yeti","Deermon","Creepy Cat","Enchanted Cobra","Cursed Mummy","Wicked Wolf","Evil Frozen Yeti","Dark Spike","Creepy Slime","Deadly Elephant","Evil Ogre","Dark Cloud","Enchanted Macaw","Crazy Unicorn","Raging Lion","Mad Golum","Forbidden Dragon","Cursed Medusa","Dark Griffin","Evil Minotaur","Angry Crab","Deadly Octopus","Evil Starfish","Dark Planet","Menacing Sting","Vile Bat","Cursed Moai","Mad Penguin","Terror Tree"}
 local EGGS = {"Forest Egg1","Forest Egg2","Forest Egg3","Desert Egg1","Desert Egg2","Desert Egg3","Frozen Egg1","Frozen Egg2","Frozen Egg3","Swamp Egg1","Swamp Egg2","Swamp Egg3","Sky Egg1","Sky Egg2","Sky Egg3","Magma Egg1","Magma Egg2","Magma Egg3","Atlantis Egg1","Atlantis Egg2","Atlantis Egg3","Aqua Egg1","Aqua Egg2","Aqua Egg3","Cosmos Egg1","Cosmos Egg2","Cosmos Egg3","Tiki Island Egg1","Tiki Island Egg2","Tiki Island Egg3","Egg Of Oblivion","Mythical Egg","Legendary Egg","Naga Boss Egg","Lava Monster Boss Egg","Ghost Pirate Boss Egg","Tiki Boss Egg"}
@@ -76,30 +83,7 @@ b:Dropdown("Enemy",{ENEMIES[1],ENEMIES[2],ENEMIES[3],ENEMIES[4],ENEMIES[5],ENEMI
     end
 end)
 
-b:Toggle("Auto Attack Bosses",function(bool)
-    shared.toggle = bool
-    AutoAttackBosses = bool
-end)
 
-b:Dropdown("Boss",{BOSSES[1],BOSSES[2],BOSSES[3],BOSSES[4]},true,function(Value)
-    AB = Value
-
-    if Value == BOSSES[1] then
-        BZ = "Zone2B1"
-    end
-
-    if Value == BOSSES[2] then
-        BZ = "Zone5B1"
-    end
-
-    if Value == BOSSES[3] then
-        BZ = "Zone8B1"
-    end
-
-    if Value == BOSSES[4] then
-        BZ = "Zone10B1"
-    end
-end)
 
 b:Toggle("Auto Buy Bags",function(bool)
     shared.toggle = bool
@@ -130,6 +114,68 @@ p:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8
         if egg == EGGS[i] then
             E = i
         end
+    end
+end)
+
+d:Toggle("Auto Attack Bosses",function(bool)
+    shared.toggle = bool
+    AutoAttackBosses = bool
+end)
+
+d:Button("Add Boss",function()
+    if BOSS1 == true then
+        NAGA = true
+    end
+    if BOSS2 == true then
+        LAVAMONSTER = true
+    end
+    if BOSS3 == true then
+        GHOSTPIRATE = true
+    end
+    if BOSS4 == true then
+        TIKIMONSTER = true
+    end
+end)
+
+d:Dropdown("Boss",{BOSSES[1],BOSSES[2],BOSSES[3],BOSSES[4]},true,function(Value)
+
+    if Value == BOSSES[1] then
+        BOSS1 = true
+    else
+        BOSS1 = false
+    end
+
+    if Value == BOSSES[2] then
+        BOSS2 = true
+    else 
+        BOSS2 = false
+    end
+
+    if Value == BOSSES[3] then
+        BOSS3 = true
+    else
+        BOSS3 = false
+    end
+
+    if Value == BOSSES[4] then
+        BOSS4 = true
+    else
+        BOSS4 = false
+    end
+end)
+
+d:Button("Remove Boss",function()
+    if BOSS1 == true then
+        NAGA = false
+    end
+    if BOSS2 == true then
+        LAVAMONSTER = false
+    end
+    if BOSS3 == true then
+        GHOSTPIRATE = false
+    end
+    if BOSS4 == true then
+        TIKIMONSTER = false
     end
 end)
 
@@ -174,9 +220,21 @@ while true do
     if AutoAttackBosses == true then
         local pets = game:GetService("Players").LocalPlayer.Character.Pets:GetChildren()
         for i, v in pairs(pets) do
-            if workspace.Zones[BZ].Enemies:FindFirstChild(AB) and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") then
-                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones[BZ].Enemies:FindFirstChild(AB), v)
-                wait()
+            if workspace.Zones.Zone2B1.Enemies:FindFirstChild("Naga") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and NAGA == true then
+                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone2B1.Enemies:FindFirstChild("Naga"), v)
+                wait(1)
+            end
+            if workspace.Zones.Zone5B1.Enemies:FindFirstChild("Lava Monster") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and LAVAMONSTER == true then
+                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone5B1.Enemies:FindFirstChild("Lava Monster"), v)
+                wait(1)
+            end
+            if workspace.Zones.Zone8B1.Enemies:FindFirstChild("Ghost Pirate") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and GHOSTPIRATE == true then
+                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone8B1.Enemies:FindFirstChild("Ghost Pirate"), v)
+                wait(1)
+            end
+            if workspace.Zones.Zone10B1.Enemies:FindFirstChild("Tiki Monster") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and TIKIMONSTER == true then
+                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone10B1.Enemies:FindFirstChild("Tiki Monster"), v)
+                wait(1)
             end
         end
     end
