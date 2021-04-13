@@ -1,0 +1,369 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Pet Swarm Simulator")
+local b = w:CreateFolder("Auto Farm")
+local p = w:CreateFolder("Auto Eggs")
+local d = w:CreateFolder("Farm Bosses")
+local e = w:CreateFolder("Extras")
+local u = w:CreateFolder("Credits")
+local FZ = "Zone1"
+local EZ = "Zone1"
+local AE = "Evil Shroom"
+local NAGA = false
+local LAVAMONSTER = false
+local GHOSTPIRATE = false
+local TIKIMONSTER = false
+local BOSS1 = true
+local BOSS2 = false
+local BOSS3 = false
+local BOSS4 = false
+local E = 1
+local ENEMIES = {"Evil Shroom","Evil Yeti","Deermon","Creepy Cat","Enchanted Cobra","Cursed Mummy","Wicked Wolf","Evil Frozen Yeti","Dark Spike","Creepy Slime","Deadly Elephant","Evil Ogre","Dark Cloud","Enchanted Macaw","Crazy Unicorn","Raging Lion","Mad Golum","Forbidden Dragon","Cursed Medusa","Dark Griffin","Evil Minotaur","Angry Crab","Deadly Octopus","Evil Starfish","Dark Planet","Menacing Sting","Vile Bat","Cursed Moai","Mad Penguin","Terror Tree"}
+local EGGS = {"Forest Egg1","Forest Egg2","Forest Egg3","Desert Egg1","Desert Egg2","Desert Egg3","Frozen Egg1","Frozen Egg2","Frozen Egg3","Swamp Egg1","Swamp Egg2","Swamp Egg3","Sky Egg1","Sky Egg2","Sky Egg3","Magma Egg1","Magma Egg2","Magma Egg3","Atlantis Egg1","Atlantis Egg2","Atlantis Egg3","Aqua Egg1","Aqua Egg2","Aqua Egg3","Cosmos Egg1","Cosmos Egg2","Cosmos Egg3","Tiki Island Egg1","Tiki Island Egg2","Tiki Island Egg3","Egg Of Oblivion","Mythical Egg","Legendary Egg","Naga Boss Egg","Lava Monster Boss Egg","Ghost Pirate Boss Egg","Tiki Boss Egg"}
+local BOSSES = {"Naga","Lava Monster","Ghost Pirate","Tiki Monster"}
+local hello = true
+
+--Toggles
+b:Toggle("Auto Collect Food",function(bool)
+    shared.toggle = bool
+    AutoCollectFood = bool
+end)
+
+b:Dropdown("Zone",{"Zone1","Zone2","Zone3","Zone4","Zone5","Zone6","Zone7","Zone8","Zone9","Zone10"},true,function(zone)
+    FZ = zone
+end)
+
+b:Toggle("Auto Attack Enemy",function(bool)
+    shared.toggle = bool
+    AutoAttackEnemies = bool
+end)
+
+b:Dropdown("Enemy",{ENEMIES[1],ENEMIES[2],ENEMIES[3],ENEMIES[4],ENEMIES[5],ENEMIES[6],ENEMIES[7],ENEMIES[8],ENEMIES[9],ENEMIES[10],ENEMIES[11],ENEMIES[12],ENEMIES[13],ENEMIES[14],ENEMIES[15],ENEMIES[16],ENEMIES[17],ENEMIES[18],ENEMIES[19],ENEMIES[20],ENEMIES[21],ENEMIES[22],ENEMIES[23],ENEMIES[24],ENEMIES[25],ENEMIES[26],ENEMIES[27],ENEMIES[28],ENEMIES[29],ENEMIES[30]},true,function(enemy)
+    if enemy == ENEMIES[1] or ENEMIES[2] or ENEMIES[3] then
+        if  enemy == "Evil Yeti" then
+            AE = "Evil Foot"
+        else
+            AE = enemy
+        end
+        EZ = "Zone1"
+    end
+    if enemy == ENEMIES[4] or enemy == ENEMIES[5] or enemy == ENEMIES[6] then
+        AE = enemy
+        EZ = "Zone2"
+    end
+    if enemy == ENEMIES[7] or enemy == ENEMIES[8] or enemy == ENEMIES[9] then
+        AE = enemy
+        EZ = "Zone3"
+    end
+    if enemy == ENEMIES[10] or enemy == ENEMIES[11] or enemy == ENEMIES[12] then
+        AE = enemy
+        EZ = "Zone4"
+    end
+    if enemy == ENEMIES[13] or enemy == ENEMIES[14] or enemy == ENEMIES[15] then
+        AE = enemy
+        EZ = "Zone5"
+    end
+    if enemy == ENEMIES[16] or enemy == ENEMIES[17] or enemy == ENEMIES[18] then
+        AE = enemy
+        EZ = "Zone6"
+    end
+    if enemy == ENEMIES[19] or enemy == ENEMIES[20] or enemy == ENEMIES[21] then
+        AE = enemy
+        EZ = "Zone7"
+    end
+    if enemy == ENEMIES[22] or enemy == ENEMIES[23] or enemy == ENEMIES[24] then
+        AE = enemy
+        EZ = "Zone8"
+    end
+    if enemy == ENEMIES[25] or enemy == ENEMIES[26] or enemy == ENEMIES[27] then
+        AE = enemy
+        EZ = "Zone9"
+    end
+    if enemy == ENEMIES[28] or enemy == ENEMIES[29] or enemy == ENEMIES[30] then
+        AE = enemy
+        EZ = "Zone10"
+    end
+end)
+
+
+
+b:Toggle("Auto Buy Bags",function(bool)
+    shared.toggle = bool
+    AutoBuyBags = bool
+end)
+
+p:Toggle("Auto Evolve Pets",function(bool)
+    shared.toggle = bool
+    AutoEvolvePets = bool
+end)
+
+p:Button("Evolve All Pets", function()
+    local pets = game:GetService("Players").LocalPlayer["PlayerData_Client"].Monsters:GetChildren()
+    for i, v in pairs(pets) do
+        local pet = v.Name
+        game:GetService("ReplicatedStorage").Remotes.Functions.UpgradeMonsterFunction:InvokeServer(pet)
+        wait()
+    end
+end)
+
+p:Toggle("Auto Hatch Egg",function(bool)
+    shared.toggle = bool
+    AutoHatchEgg = bool
+end)
+
+p:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9],EGGS[10],EGGS[11],EGGS[12],EGGS[13],EGGS[14],EGGS[15],EGGS[16],EGGS[17],EGGS[18],EGGS[19],EGGS[20],EGGS[21],EGGS[22],EGGS[23],EGGS[24],EGGS[25],EGGS[26],EGGS[27],EGGS[28],EGGS[29],EGGS[30],EGGS[31],EGGS[32],EGGS[33],EGGS[34],EGGS[35],EGGS[36],EGGS[37],EGGS[38],EGGS[39],EGGS[40],EGGS[41]},true,function(egg)
+    for i = 1, 41 do
+        if egg == EGGS[i] then
+            E = i
+        end
+    end
+end)
+
+d:Toggle("Auto Attack Bosses",function(bool)
+    shared.toggle = bool
+    AutoAttackBosses = bool
+end)
+
+d:Button("Add Boss",function()
+    if BOSS1 == true then
+        NAGA = true
+    end
+    if BOSS2 == true then
+        LAVAMONSTER = true
+    end
+    if BOSS3 == true then
+        GHOSTPIRATE = true
+    end
+    if BOSS4 == true then
+        TIKIMONSTER = true
+    end
+end)
+
+d:Dropdown("Boss",{BOSSES[1],BOSSES[2],BOSSES[3],BOSSES[4]},true,function(Value)
+
+    if Value == BOSSES[1] then
+        BOSS1 = true
+    else
+        BOSS1 = false
+    end
+
+    if Value == BOSSES[2] then
+        BOSS2 = true
+    else 
+        BOSS2 = false
+    end
+
+    if Value == BOSSES[3] then
+        BOSS3 = true
+    else
+        BOSS3 = false
+    end
+
+    if Value == BOSSES[4] then
+        BOSS4 = true
+    else
+        BOSS4 = false
+    end
+end)
+
+d:Button("Remove Boss",function()
+    if BOSS1 == true then
+        NAGA = false
+    end
+    if BOSS2 == true then
+        LAVAMONSTER = false
+    end
+    if BOSS3 == true then
+        GHOSTPIRATE = false
+    end
+    if BOSS4 == true then
+        TIKIMONSTER = false
+    end
+end)
+
+e:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+--[Death Event]--
+local WAIT = false
+game:GetService("Players").LocalPlayer.Character.Humanoid.Died:Connect(function()
+    WAIT = true
+end)
+
+while true do
+    wait()
+    if AutoCollectFood == true then
+        local pets = game:GetService("Players").LocalPlayer.Character.Pets:GetChildren()
+        for i, v in pairs(pets) do
+            game:GetService("ReplicatedStorage").Remotes.Functions.CollectionRF:InvokeServer("CollectFood", workspace.Zones[FZ].FoodSpawns.Part, v)
+            wait(.2)
+        end
+        if hello == true then
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[1]:FindFirstChild("Tier") then 
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[1].Tier:Remove()
+            end 
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[1]:FindFirstChild("ViewportFrame") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[1].ViewportFrame:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[2]:FindFirstChild("Tier") then 
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[2].Tier:Remove()
+            end 
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[2]:FindFirstChild("ViewportFrame") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[2].ViewportFrame:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[3]:FindFirstChild("Tier") then 
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[3].Tier:Remove()
+            end 
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[3]:FindFirstChild("ViewportFrame") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Left.Inner.Frame.SlotsFrame[3].ViewportFrame:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Center.Inner.Frame.Frame:FindFirstChild("ScrollingFrame") then
+                local pets = game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Center.Inner.Frame.Frame.ScrollingFrame:GetChildren()
+                for i, v in pairs(pets) do
+                    v:Remove()
+                end
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Center.Inner.Frame:FindFirstChild("InventoryLabel") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Center.Inner.Frame.InventoryLabel.Text = "0/20"
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Info:FindFirstChild("MonsterRarity") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Info.MonsterRarity:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Info:FindFirstChild("MonsterName") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Info.MonsterName:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Info:FindFirstChild("CurrentTier") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Info.CurrentTier:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Info:FindFirstChild("UpgradeMonster") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Info.UpgradeMonster:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon:FindFirstChild("Attack") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon.Attack:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon:FindFirstChild("Damage") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon.Damage:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon:FindFirstChild("Tier") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon.Tier:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon:FindFirstChild("MonsterAge") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon.MonsterAge:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon:FindFirstChild("FoodMultiplier") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon.FoodMultiplier:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon:FindFirstChild("MonsterViewportFrame") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon.MonsterViewportFrame:Remove()
+            end
+
+            if game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon:FindFirstChild("MonsterZone") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Pets.Container.Right.Inner.Icon.MonsterZone:Remove()
+            end
+
+            local localplayer = game:GetService("Players").LocalPlayer.Name
+            if game:GetService("Workspace")[localplayer]:FindFirstChild("Pets") then
+                local pets = game:GetService("Workspace")[localplayer].Pets:GetChildren()
+                for i, v in pairs(pets) do
+                    v:Remove()
+                end
+            end
+            hello = false
+        end
+    end
+    
+    if AutoAttackEnemies == true then
+        local pets = game:GetService("Players").LocalPlayer.Character.Pets:GetChildren()
+        for i, v in pairs(pets) do
+            if workspace.Zones[EZ].Enemies:FindFirstChild(AE) and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") then
+                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones[EZ].Enemies:FindFirstChild(AE), v)
+                wait(.2)
+            end
+        end
+    end
+
+    if AutoAttackBosses == true then
+        if game:GetService("Players").LocalPlayer.Character:WaitForChild("Pets") then
+            local pets = game:GetService("Players").LocalPlayer.Character.Pets:GetChildren()
+            for i, v in pairs(pets) do
+                if workspace.Zones.Zone2B1.Enemies:FindFirstChild("Naga") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and NAGA == true then
+                    game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone2B1.Enemies:FindFirstChild("Naga"), v)
+                    wait(1)
+                end
+                if workspace.Zones.Zone5B1.Enemies:FindFirstChild("Lava Monster") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and LAVAMONSTER == true then
+                    game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone5B1.Enemies:FindFirstChild("Lava Monster"), v)
+                    wait(1)
+                end
+                if workspace.Zones.Zone8B1.Enemies:FindFirstChild("Ghost Pirate") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and GHOSTPIRATE == true then
+                    game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone8B1.Enemies:FindFirstChild("Ghost Pirate"), v)
+                    wait(1)
+                end
+                if workspace.Zones.Zone10B1.Enemies:FindFirstChild("Tiki Monster") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and TIKIMONSTER == true then
+                    game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone10B1.Enemies:FindFirstChild("Tiki Monster"), v)
+                    wait(1)
+                end
+            end
+        end
+    end
+    
+    if AutoBuyBags == true then
+        for i = 1, 15 do 
+            game:GetService("ReplicatedStorage").Remotes.Events.BuyBackpackEvent:FireServer(tostring(i))
+            wait(2)
+        end
+    end
+    
+    if AutoHatchEgg == true then
+        game:GetService("ReplicatedStorage").Remotes.Events.PlantEggEvent:FireServer(E)
+        game:GetService("ReplicatedStorage").Remotes.Events.HatchEggEvent:FireServer()
+        wait(1)
+    end
+    
+    if AutoEvolvePets == true then
+        local pets = game:GetService("Players").LocalPlayer["PlayerData_Client"].Monsters:GetChildren()
+        for i, v in pairs(pets) do
+            local pet = v.Name
+            game:GetService("ReplicatedStorage").Remotes.Functions.UpgradeMonsterFunction:InvokeServer(pet)
+            wait()
+        end
+    end
+    
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
