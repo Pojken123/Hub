@@ -197,6 +197,12 @@ u:Button("Discrod Server",function()
     setclipboard("https://discord.gg/K4txdRSVfq")
 end)
 
+--[Death Event]--
+local WAIT = false
+game:GetService("Players").LocalPlayer.Character.Humanoid.Died:Connect(function()
+    WAIT = true
+end)
+
 while true do
     wait()
     if AutoCollectFood == true then
@@ -218,23 +224,25 @@ while true do
     end
 
     if AutoAttackBosses == true then
-        local pets = game:GetService("Players").LocalPlayer.Character.Pets:GetChildren()
-        for i, v in pairs(pets) do
-            if workspace.Zones.Zone2B1.Enemies:FindFirstChild("Naga") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and NAGA == true then
-                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone2B1.Enemies:FindFirstChild("Naga"), v)
-                wait(1)
-            end
-            if workspace.Zones.Zone5B1.Enemies:FindFirstChild("Lava Monster") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and LAVAMONSTER == true then
-                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone5B1.Enemies:FindFirstChild("Lava Monster"), v)
-                wait(1)
-            end
-            if workspace.Zones.Zone8B1.Enemies:FindFirstChild("Ghost Pirate") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and GHOSTPIRATE == true then
-                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone8B1.Enemies:FindFirstChild("Ghost Pirate"), v)
-                wait(1)
-            end
-            if workspace.Zones.Zone10B1.Enemies:FindFirstChild("Tiki Monster") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and TIKIMONSTER == true then
-                game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone10B1.Enemies:FindFirstChild("Tiki Monster"), v)
-                wait(1)
+        if game:GetService("Players").LocalPlayer.Character:WaitForChild("Pets") then
+            local pets = game:GetService("Players").LocalPlayer.Character.Pets:GetChildren()
+            for i, v in pairs(pets) do
+                if workspace.Zones.Zone2B1.Enemies:FindFirstChild("Naga") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and NAGA == true then
+                    game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone2B1.Enemies:FindFirstChild("Naga"), v)
+                    wait(1)
+                end
+                if workspace.Zones.Zone5B1.Enemies:FindFirstChild("Lava Monster") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and LAVAMONSTER == true then
+                    game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone5B1.Enemies:FindFirstChild("Lava Monster"), v)
+                    wait(1)
+                end
+                if workspace.Zones.Zone8B1.Enemies:FindFirstChild("Ghost Pirate") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and GHOSTPIRATE == true then
+                    game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone8B1.Enemies:FindFirstChild("Ghost Pirate"), v)
+                    wait(1)
+                end
+                if workspace.Zones.Zone10B1.Enemies:FindFirstChild("Tiki Monster") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Pets") and TIKIMONSTER == true then
+                    game:GetService("ReplicatedStorage").Remotes.Functions.CombatRF:InvokeServer("AttackEnemy", workspace.Zones.Zone10B1.Enemies:FindFirstChild("Tiki Monster"), v)
+                    wait(1)
+                end
             end
         end
     end
