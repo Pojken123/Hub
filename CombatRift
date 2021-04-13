@@ -7,7 +7,7 @@ local e = w:CreateFolder("Mix")
 local u = w:CreateFolder("Credits")
 local world = "1"
 local boss = 6
-local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Water 1","Water 2"}
+local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2"}
 local E = 1
 local BOSSES = {"Ancient Bastet","Frozen Lord","Inferno Gladiator","Supreme Warlord","Drowned Pirate Captain"}
 
@@ -22,8 +22,8 @@ q:Toggle("Eggs",function(bool)
     AutoBuyEggs = bool
 end)
 
-q:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9],EGGS[10]},true,function(egg)
-    for i = 1, 10 do
+q:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9],EGGS[10],EGGS[11]},true,function(egg)
+    for i = 1, #EGGS do
         if egg == EGGS[i] then
             E = i
         end
