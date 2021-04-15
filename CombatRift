@@ -7,7 +7,7 @@ local e = w:CreateFolder("Mix")
 local u = w:CreateFolder("Credits")
 local world = "1"
 local boss = 6
-local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2"}
+local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2","Clockwork"}
 local E = 1
 local EA = 1
 local BOSSES = {"Ancient Bastet","Frozen Lord","Inferno Gladiator","Supreme Warlord","Drowned Pirate Captain","Mechanical Goliath"}
@@ -23,7 +23,7 @@ q:Toggle("Eggs",function(bool)
     AutoBuyEggs = bool
 end)
 
-q:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9],EGGS[10],EGGS[11]},true,function(egg)
+q:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9],EGGS[10],EGGS[11],EGGS[12]},true,function(egg)
     for i = 1, #EGGS do
         if egg == EGGS[i] then
             E = i
@@ -59,11 +59,6 @@ b:Dropdown("Ancient Bastet",{BOSSES[1],BOSSES[2],BOSSES[3],BOSSES[4],BOSSES[5],B
             boss = 3 + i * 3
         end
     end
-end)
-
-b:Toggle("Auto Attack",function(bool)
-    shared.toggle = bool
-    AutoAttack = bool
 end)
 
 b:Toggle("Auto Sell",function(bool)
@@ -153,20 +148,6 @@ while true do
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").BuildingMapStuff.Map.Map1.Functional.Sell.Model.Model.Model.E.CFrame.Position + Vector3.new(0,-17,10))
             wait(.2)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(playerposition)
-        end
-    end
-    
-    if AutoAttack == true then
-        local tool = game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
-        game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
-        for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-            if v.ClassName == "Folder" then
-                for i,v1 in pairs(v:GetChildren()) do
-                    if v1.ClassName == "RemoteEvent" then
-                        game:GetService("ReplicatedStorage")[v.Name][v1.Name]:FireServer("ActivateSword")
-                    end
-                end
-            end
         end
     end
     
