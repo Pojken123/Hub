@@ -10,7 +10,7 @@ local boss = 6
 local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2"}
 local E = 1
 local EA = 1
-local BOSSES = {"Ancient Bastet","Frozen Lord","Inferno Gladiator","Supreme Warlord","Drowned Pirate Captain"}
+local BOSSES = {"Ancient Bastet","Frozen Lord","Inferno Gladiator","Supreme Warlord","Drowned Pirate Captain","Mechanical Goliath"}
 
 --[Toggle]--
 q:Toggle("Souls",function(bool)
@@ -44,7 +44,7 @@ b:Toggle("Auto Tp Mobs",function(bool)
     AutoTpMobs = bool
 end)
 
-b:Dropdown("World 1",{"1","2","3","4","5","6"},true,function(Value) 
+b:Dropdown("World 1",{"1","2","3","4","5","6","7"},true,function(Value) 
     world = Value
 end)
 
@@ -53,8 +53,8 @@ b:Toggle("Auto Tp Boss",function(bool)
     AutoTpBoss = bool
 end)
 
-b:Dropdown("Ancient Bastet",{BOSSES[1],BOSSES[2],BOSSES[3],BOSSES[4],BOSSES[5],BOSSES[6],BOSSES[7],BOSSES[8],BOSSES[9],BOSSES[10]},true,function(Value) 
-    for i = 1, 10 do
+b:Dropdown("Ancient Bastet",{BOSSES[1],BOSSES[2],BOSSES[3],BOSSES[4],BOSSES[5],BOSSES[6],BOSSES[7],BOSSES[8],BOSSES[9],BOSSES[10],BOSSES[11]},true,function(Value) 
+    for i = 1, #BOSSES do
         if Value == BOSSES[i] then
             boss = 3 + i * 3
         end
@@ -213,6 +213,12 @@ while true do
 
             if world == "6" then
                 if v.Name == "6" then
+                    tp()
+                end
+            end
+
+            if world == "7" then
+                if v.Name == "7" then
                     tp()
                 end
             end
