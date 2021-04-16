@@ -1,29 +1,45 @@
 local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
 local w = library:CreateWindow("Vortex Simulator")
-local i = w:CreateFolder("AutoFarm")
-local e = w:CreateFolder("AutoBuy")
+local i = w:CreateFolder("Auto Farm")
+local e = w:CreateFolder("Auto Buy")
+local d = w:CreateFolder("Teleport")
 local m = w:CreateFolder("Mix")
 local u = w:CreateFolder("Credits")
 local CN = "Red"
 local ZONE = "Spawn"
+local REBIRTHS = {"1","5","25","50","100","250","500","1000","2500","5000","10000","25000"}
+local R = 1
 
-i:Toggle("AutoCoins",function(bool)
+i:Toggle("Auto Coins",function(bool)
     shared.toggle = bool
     AutoCoins = bool
 end)
 
-i:Toggle("AutoSell",function(bool)
+i:Toggle("Auto Sell",function(bool)
     shared.toggle = bool
     AutoSell = bool
 end)
 
-e:Toggle("AutoOpenCapsule",function(bool)
+e:Toggle("Auto Open Capsule",function(bool)
     shared.toggle = bool
     AutoOpenCapsule = bool
 end)
 
-e:Dropdown("Red",{"Red","Blue","Yellow","Desert","Winter","Candy","Lava","Void","Beach","Toy","Old","Crimson","Toxic"},true,function(capsulename)
-    CN = capsulename
+e:Dropdown("Red",{"Red","Blue","Yellow","Desert","Winter","Candy","Lava","Void","Beach","Toy","Old","Crimson","Toxic","Jungle"},true,function(Value)
+    CN = Value
+end)
+
+e:Toggle("Auto Buy Rebirths",function(bool)
+    shared.toggle = bool
+    AutoBuyRebirths = bool
+end)
+
+e:Dropdown("Rebirths",{REBIRTHS[1],REBIRTHS[2],REBIRTHS[3],REBIRTHS[4],REBIRTHS[5],REBIRTHS[6],REBIRTHS[7],REBIRTHS[8],REBIRTHS[9],REBIRTHS[10],REBIRTHS[11],REBIRTHS[12]},true,function(Value)
+    for i = 1, #REBIRTHS do
+        if Value == REBIRTHS[i] then
+            R = i
+        end
+    end
 end)
 
 m:Toggle("AntiAfk",function(bool)
@@ -31,7 +47,7 @@ m:Toggle("AntiAfk",function(bool)
     AntiAfk = bool
 end)
 
-m:Dropdown("Tp World",{"Spawn","Desert","Winter","Candy","Lava","Void","Beach","Toy","Old","Crimson","Toxic"},true,function(zone)
+d:Dropdown("Tp World",{"Spawn","Desert","Winter","Candy","Lava","Void","Beach","Toy","Old","Crimson","Toxic","Jungle"},true,function(zone)
     ZONE = zone
     local place = game:GetService("Workspace").Zones:FindFirstChild(ZONE).Floor
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(place.CFrame.Position + Vector3.new(0,20,0))
@@ -39,6 +55,10 @@ end)
 
 m:Button("Open Shop",function()
     game:GetService("Workspace").Main.Store.Touch.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
+end)
+
+m:Button("Open Rebirth Shop",function()
+    game:GetService("Workspace").Main.RebirthStore.Touch.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,math.random(-1,1),0)
 end)
 
 --Credits
@@ -70,6 +90,10 @@ while true do
     
     if AutoOpenCapsule == true then
         game:GetService("ReplicatedStorage").Functions.BuyCapsule:FireServer(CN)
+    end
+
+    if AutoBuyRebirths == true then
+        game:GetService("ReplicatedStorage").Functions.Rebirth:FireServer(R)
     end
         
     if AntiAfk == true then
