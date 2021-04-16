@@ -1,0 +1,85 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local w = library:CreateWindow("Club Tycoon")
+local b = w:CreateFolder("Auto Farm")
+local e = w:CreateFolder("Mix")
+local u = w:CreateFolder("Credits")
+
+--Toggle
+b:Toggle("Auto Collect Cash",function(bool)
+    shared.toggle = bool
+    AutoCollectCash = bool
+end)
+
+b:Toggle("Teleport Buttons",function(bool)
+    shared.toggle = bool
+    AutoTeleportButtons = bool
+end)
+
+
+b:Toggle("Auto Collect Trash",function(bool)
+    shared.toggle = bool
+    AutoCollectTrash = bool
+end)
+
+e:Toggle("Anti Afk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--Credits
+u:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+u:Button("maxgat5#8395",function()
+    setclipboard("maxgat5#8395")
+end)
+ 
+u:Button("Discrod Server",function()
+    setclipboard("https://discord.gg/K4txdRSVfq")
+end)
+
+while true do
+    wait()
+    
+    if AutoCollectCash == true then
+        game:GetService("ReplicatedStorage").RE.emptyCollector:InvokeServer()
+    end
+    
+    if AutoTeleportButtons == true then
+        local tycoons = game:GetService("Workspace").Tycoon.Tycoons:GetChildren()
+        for i,v in pairs(tycoons) do
+            if v.Owner.Value == game:GetService("Players").LocalPlayer.Name then
+                local buttons = v.Buttons:GetChildren()
+                for i,v1 in pairs(buttons) do
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v1.Top.CFrame.Position + Vector3.new(0,0,0))
+                    wait()
+                end
+            end    
+        end
+    end
+    
+    if AutoCollectTrash == true then
+        local tycoons = game:GetService("Workspace").Tycoon.Tycoons:GetChildren()
+        for i,v in pairs(tycoons) do
+            if v.Owner.Value == game:GetService("Players").LocalPlayer.Name then
+                local trash = v.Trash:GetChildren()
+                for i,v1 in pairs(trash) do
+                    if v1:FindFirstChild("Hitbox") then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v1.Hitbox.CFrame.Position + Vector3.new(0,0,0))
+                        fireclickdetector(v1.Hitbox.ClickDetector)
+                        wait()
+                    end
+                end
+            end
+        end
+    end
+    
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
