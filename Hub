@@ -52,3 +52,7 @@ end
 if game.PlaceId == 6093650231 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/PotionLegends')))()
 end
+--[Combat Rift]--
+if game.PlaceId == 4952780297 then
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/CombatRift')))()
+end
