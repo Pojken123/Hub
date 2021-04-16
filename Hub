@@ -56,3 +56,7 @@ end
 if game.PlaceId == 4952780297 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/CombatRift')))()
 end
+--[Club Tycoon]--
+if game.PlaceId == 6163803997 then
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/ClubTycoon')))()
+end
