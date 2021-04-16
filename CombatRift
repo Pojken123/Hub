@@ -6,11 +6,12 @@ local q = w:CreateFolder("Auto Buy")
 local e = w:CreateFolder("Mix")
 local u = w:CreateFolder("Credits")
 local world = "1"
+local mob = 1
+local MOBS = {"Goblin","Forest Sprite","Corrupted Forest Sprite","Pharoah","Void-Touched Pharoah","Ancient Bastet","Ice Giant","Frost General","Frozen Lord","Volcano Minion","Inferno Giant","Inferno Gladiator","Ruby Knight","Crimson Warrior","Supreme Warlord","Murfish","Possesed Murfish","Drowned Pirate Captain","Clockwork Engineer","Rusted Clockwork Engineer","Mechanical Goliath"}
 local boss = 6
 local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2","Clockwork"}
 local E = 1
 local EA = 1
-local BOSSES = {"Ancient Bastet","Frozen Lord","Inferno Gladiator","Supreme Warlord","Drowned Pirate Captain","Mechanical Goliath"}
 
 --[Toggle]--
 q:Toggle("Souls",function(bool)
@@ -44,21 +45,38 @@ b:Toggle("Auto Tp Mobs",function(bool)
     AutoTpMobs = bool
 end)
 
-b:Dropdown("World 1",{"1","2","3","4","5","6","7"},true,function(Value) 
-    world = Value
-end)
-
-b:Toggle("Auto Tp Boss",function(bool)
-    shared.toggle = bool
-    AutoTpBoss = bool
-end)
-
-b:Dropdown("Ancient Bastet",{BOSSES[1],BOSSES[2],BOSSES[3],BOSSES[4],BOSSES[5],BOSSES[6],BOSSES[7],BOSSES[8],BOSSES[9],BOSSES[10],BOSSES[11]},true,function(Value) 
-    for i = 1, #BOSSES do
-        if Value == BOSSES[i] then
-            boss = 3 + i * 3
+b:Dropdown("Enemy",{MOBS[1],MOBS[2],MOBS[3],MOBS[4],MOBS[5],MOBS[6],MOBS[7],MOBS[8],MOBS[9],MOBS[10],MOBS[11],MOBS[12],MOBS[13],MOBS[14],MOBS[15],MOBS[16],MOBS[17],MOBS[18],MOBS[19],MOBS[20],MOBS[21],},true,function(Value) 
+    for i = 1, #MOBS do
+        if Value == MOBS[i] then
+            mob = i
+            if Value == MOBS[1] or Value == MOBS[2] or Value == MOBS[3] then
+                world = "1"
+            end
+            if Value == MOBS[4] or Value == MOBS[5] or Value == MOBS[6] then
+                world = "2"
+            end
+            if Value == MOBS[7] or Value == MOBS[8] or Value == MOBS[9] then
+                world = "3"
+            end
+            if Value == MOBS[10] or Value == MOBS[11] or Value == MOBS[12] then
+                world = "4"
+            end
+            if Value == MOBS[13] or Value == MOBS[14] or Value == MOBS[15] then
+                world = "5"
+            end
+            if Value == MOBS[16] or Value == MOBS[17] or Value == MOBS[18] then
+                world = "6"
+            end
+            if Value == MOBS[19] or Value == MOBS[20] or Value == MOBS[21] then
+                world = "7"
+            end
         end
     end
+end)
+
+b:Toggle("Auto Attack",function(bool)
+    shared.toggle = bool
+    AutoAttack = bool
 end)
 
 b:Toggle("Auto Sell",function(bool)
@@ -151,14 +169,25 @@ while true do
         end
     end
     
+    if AutoAttack == true then
+        if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid") then
+            local tool = game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+            game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
+            if game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+                tool:Activate()
+            end
+        end
+    end
+
     if AutoTpMobs == true then
         for i,v in pairs(game:GetService("Workspace").EnemySpawnRegions:GetChildren()) do
             function tp()
                 for i,v1 in pairs(v:GetChildren()) do
                     if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v1.HumanoidRootPart.CFrame.Position + Vector3.new(0,0,3))
+                        if v1.EnemyValue.Value == mob then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v1.HumanoidRootPart.CFrame.Position + Vector3.new(0,0,3))
+                        end
                     end
-                    wait()
                 end
             end
             
