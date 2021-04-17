@@ -35,7 +35,7 @@ u:Button("maxgat5#8395",function()
     setclipboard("maxgat5#8395")
 end)
  
-u:Button("Discrod Server",function()
+u:Button("Discord Server",function()
     setclipboard("https://discord.gg/K4txdRSVfq")
 end)
 
