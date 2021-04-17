@@ -257,6 +257,10 @@ while true do
     if AutoHatchEgg == true then
         game:GetService("ReplicatedStorage").Remotes.Events.PlantEggEvent:FireServer(E)
         game:GetService("ReplicatedStorage").Remotes.Events.HatchEggEvent:FireServer()
+        local Hatched = game:GetService("Players").LocalPlayer.PlayerGui.EggOpening.Frame:FindFirstChild("Template")
+        if Hatched then
+            Hatched:Destroy()
+        end
         wait(1)
     end
     
