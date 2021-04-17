@@ -69,7 +69,7 @@ u:Button("Pojken#9816",function()
     setclipboard("Pojken#9816")
 end)
  
-u:Button("Discrod Server",function()
+u:Button("Discord Server",function()
     setclipboard("https://discord.gg/K4txdRSVfq")
 end)
 
