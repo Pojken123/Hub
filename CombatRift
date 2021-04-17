@@ -14,11 +14,6 @@ local E = 1
 local EA = 1
 
 --[Toggle]--
-q:Toggle("Souls",function(bool)
-    shared.toggle = bool
-    AutoBuySouls = bool
-end)
-
 q:Toggle("Eggs",function(bool)
     shared.toggle = bool
     AutoBuyEggs = bool
@@ -113,18 +108,6 @@ while true do
     if AutoTpKOTH == true then
         if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").BuildingMapStuff.Map.Map4.Functional.KOTH.Model.MeshPart.CFrame.Position + Vector3.new(0,25,0))
-        end
-    end
-    
-    if AutoBuySouls == true then
-        for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
-            if v.ClassName == "Folder" then
-                for i,v1 in pairs(v:GetChildren()) do
-                    if v1.ClassName == "RemoteFunction" then
-                        game:GetService("ReplicatedStorage")[v.Name][v1.Name]:InvokeServer("PurchaseAllSouls")
-                    end
-                end
-            end
         end
     end
 
