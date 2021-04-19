@@ -1,0 +1,112 @@
+--[Create Gui]--
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("Mining Frenzy")
+local b = w:CreateFolder("Section")
+local e = w:CreateFolder("Extras")
+local s = w:CreateFolder("Settings")
+local c = w:CreateFolder("Credits")
+
+--[Variables]--
+local player = game.Players.LocalPlayer
+local COREGUI = {}
+local coregui = game.CoreGui:GetDescendants()
+for i = 1, #coregui do 
+    local v = coregui[i]
+    if v.Name == "Window" and v.ClassName == "ImageLabel" then
+        table.insert(COREGUI,v)
+    end
+end
+
+--[Buttons]--
+b:Label("Pojken",{
+    TextSize = 25;
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+}) 
+
+b:Button("Button",function()
+    print("Hello")
+end)
+
+b:Toggle("Toggle",function(bool)
+    shared.toggle = bool
+    variable = bool
+end)
+
+b:Slider("Slider",{
+    min = 10; -- min value of the slider
+    max = 50; -- max value of the slider
+    precise = false;
+},function(value)
+    print(value)
+end)
+
+b:Dropdown("Dropdown",{"A","B","C"},true,function(mob) --true/false, replaces the current title "Dropdown" with the option that they choosed
+    print(mob)
+end)
+
+b:Bind("Bind",Enum.KeyCode.C,function()
+    print("Dab")
+end)
+
+b:ColorPicker("ColorPicker",Color3.fromRGB(255,0,0),function(color) --Default color
+    print(color)
+end)
+
+b:Box("Box","number",function(value) -- "number" or "string"
+    print(value)
+end)
+
+b:DestroyGui()
+
+--[Extras]--
+e:Toggle("Anti Afk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--[Settings]--
+s:Bind("Hide Gui Hotkey",Enum.KeyCode.H,function()
+    for i = 1, #COREGUI do 
+        if COREGUI[i].Visible == true then
+            COREGUI[i].Visible = false
+        else
+            COREGUI[i].Visible = true
+        end
+    end
+end)
+
+--[Credits]--
+c:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+--[Functions]--
+while wait() do
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
+
+--[[
+How to refresh a dropdown:
+1)Create the dropdown and save it in a variable
+local yourvariable = b:Dropdown("Hi",yourtable,function(a)
+    print(a)
+end)
+2)Refresh it using the function
+yourvariable:Refresh(yourtable)
+How to refresh a label:
+1)Create your label and save it in a variable
+local yourvariable = b:Label("Pretty Useless NGL",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+})
+2)Refresh it using the function
+yourvariable:Refresh("Hello") It will only change the text ofc
+]]
