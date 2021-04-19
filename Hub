@@ -60,3 +60,7 @@ end
 if game.PlaceId == 6163803997 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/ClubTycoon')))()
 end
+--[Dinosaur City]--
+if game.PlaceId == 6495194916 then
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/DinosaurCity')))()
+end
