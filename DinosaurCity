@@ -1,0 +1,63 @@
+--[Create Gui]--
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("Dinosaur City")
+local b = w:CreateFolder("Auto Farm")
+local s = w:CreateFolder("Settings")
+local c = w:CreateFolder("Credits")
+
+--[Variables]--
+local player = game.Players.LocalPlayer
+local COREGUI = {}
+local coregui = game.CoreGui:GetDescendants()
+for i = 1, #coregui do 
+    local v = coregui[i]
+    if v.Name == "Window" and v.ClassName == "ImageLabel" then
+        table.insert(COREGUI,v)
+    end
+end
+
+local WORKSPACE = {}
+local workspace = game.Workspace:GetDescendants()
+for i = 1, #workspace do 
+    local v = workspace[i]
+    if v.Name == "Level" and v.ClassName == "IntValue" then
+        table.insert(WORKSPACE,v)
+    end
+end
+
+--[Buttons]--
+b:Toggle("Auto Teleport Part",function(bool)
+    shared.toggle = bool
+    AutoTeleportPart = bool
+end)
+
+--[Settings]--
+s:Bind("Hide Gui Hotkey",Enum.KeyCode.H,function()
+    for i = 1, #COREGUI do 
+        if COREGUI[i].Visible == true then
+            COREGUI[i].Visible = false
+        else
+            COREGUI[i].Visible = true
+        end
+    end
+end)
+
+--[Credits]--
+c:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+--[Functions]--
+while wait() do
+    if AutoTeleportPart == true then
+        for i,v in pairs(WORKSPACE) do
+            local part = v.Parent.Parent
+            if part then
+                if part.ClassName == "Part" and player.Character.HumanoidRootPart then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(part.CFrame.Position + Vector3.new(0,2,5))
+                    wait()
+                end
+            end 
+        end
+    end
+end
