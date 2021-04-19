@@ -1,6 +1,6 @@
 --[Create Gui]--
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
-local w = library:CreateWindow("Game")
+local w = library:CreateWindow("Wizard Masters")
 local f = w:CreateFolder("Auto Farm")
 local b = w:CreateFolder("Auto Buy")
 local e = w:CreateFolder("Extras")
