@@ -1,7 +1,7 @@
 --[Create Gui]--
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 local w = library:CreateWindow("Mining Frenzy")
-local b = w:CreateFolder("Section")
+local b = w:CreateFolder("Auto Farm")
 local e = w:CreateFolder("Extras")
 local s = w:CreateFolder("Settings")
 local c = w:CreateFolder("Credits")
@@ -17,47 +17,31 @@ for i = 1, #coregui do
     end
 end
 
+local WORKSPACE = {}
+local workspace = game.Workspace:GetDescendants()
+for i = 1, #workspace do 
+    local v = workspace[i]
+    if v.Name == "DestructibleType" and v.ClassName == "StringValue" then
+        table.insert(WORKSPACE,v)
+    end
+end
+
 --[Buttons]--
-b:Label("Pojken",{
-    TextSize = 25;
+b:Label("Auto Mine Only Gives You The Items If Someone Breaks The Block",{
+    TextSize = 13;
     TextColor = Color3.fromRGB(255,255,255);
     BgColor = Color3.fromRGB(69,69,69);
 }) 
 
-b:Button("Button",function()
-    print("Hello")
-end)
-
-b:Toggle("Toggle",function(bool)
+b:Toggle("Auto Mine",function(bool)
     shared.toggle = bool
-    variable = bool
+    AutoMine = bool
 end)
 
-b:Slider("Slider",{
-    min = 10; -- min value of the slider
-    max = 50; -- max value of the slider
-    precise = false;
-},function(value)
-    print(value)
+b:Toggle("Auto Sell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
 end)
-
-b:Dropdown("Dropdown",{"A","B","C"},true,function(mob) --true/false, replaces the current title "Dropdown" with the option that they choosed
-    print(mob)
-end)
-
-b:Bind("Bind",Enum.KeyCode.C,function()
-    print("Dab")
-end)
-
-b:ColorPicker("ColorPicker",Color3.fromRGB(255,0,0),function(color) --Default color
-    print(color)
-end)
-
-b:Box("Box","number",function(value) -- "number" or "string"
-    print(value)
-end)
-
-b:DestroyGui()
 
 --[Extras]--
 e:Toggle("Anti Afk",function(bool)
@@ -83,6 +67,25 @@ end)
 
 --[Functions]--
 while wait() do
+    if AutoMine == true then
+        local ores = game:GetService("Workspace").Mines.Home:GetChildren()
+        for i,v in pairs(ores) do
+            local position = v.pos.Value
+            local hp = v.health.Value
+            for i = 1, hp do
+                if AutoMine == true then
+                    game:GetService("ReplicatedStorage").comm.re:FireServer("mine", Vector3.new(position),"Home")
+                    wait()
+                end
+            end
+        end
+    end
+
+    if AutoSell == true then
+        firetouchinterest(game:GetService("Workspace").Sells.Atlantis.Sell, game:GetService("Workspace").characters[player.Name].HumanoidRootPart, 0)
+        firetouchinterest(game:GetService("Workspace").Sells.Atlantis.Sell, game:GetService("Workspace").characters[player.Name].HumanoidRootPart, 1)
+    end
+
     if AntiAfk == true then
         local bb=game:service'VirtualUser'
         game:service'Players'.LocalPlayer.Idled:connect(function()
@@ -91,22 +94,3 @@ while wait() do
         end)
     end
 end
-
---[[
-How to refresh a dropdown:
-1)Create the dropdown and save it in a variable
-local yourvariable = b:Dropdown("Hi",yourtable,function(a)
-    print(a)
-end)
-2)Refresh it using the function
-yourvariable:Refresh(yourtable)
-How to refresh a label:
-1)Create your label and save it in a variable
-local yourvariable = b:Label("Pretty Useless NGL",{
-    TextSize = 25; -- Self Explaining
-    TextColor = Color3.fromRGB(255,255,255);
-    BgColor = Color3.fromRGB(69,69,69);
-})
-2)Refresh it using the function
-yourvariable:Refresh("Hello") It will only change the text ofc
-]]
