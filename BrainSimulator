@@ -1,84 +1,89 @@
+--[Create Gui]--
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 local w = library:CreateWindow("Brain Simulator")
-local b = w:CreateFolder("AutoFarm")
-local f = w:CreateFolder("AutoBuy")
-local d = w:CreateFolder("OpenEgg")
-local e = w:CreateFolder("Mix")
-local u = w:CreateFolder("Credits")
+local f = w:CreateFolder("Auto Farm")
+local b = w:CreateFolder("Auto Buy")
+local e = w:CreateFolder("Extras")
+local s = w:CreateFolder("Settings")
+local c = w:CreateFolder("Credits")
+
+--[Variables]--
+local player = game.Players.LocalPlayer
+local COREGUI = {}
+local coregui = game.CoreGui:GetDescendants()
+for i = 1, #coregui do 
+    local v = coregui[i]
+    if v.Name == "Window" and v.ClassName == "ImageLabel" then
+        table.insert(COREGUI,v)
+    end
+end
+
 local CE = "Starter Egg"
 local S = "16"
 
---Toggle
-b:Toggle("AutoClick",function(bool)
+--[Buttons]--
+f:Toggle("Auto Click",function(bool)
     shared.toggle = bool
     AutoClick = bool
 end)
 
-b:Toggle("AutoSell",function(bool)
+f:Toggle("Auto Sell",function(bool)
     shared.toggle = bool
     AutoSell = bool
 end)
 
-b:Toggle("AutoTpGems",function(bool)
+f:Toggle("Auto Tp Gems",function(bool)
     shared.toggle = bool
     AutoTpGems = bool
 end)
 
-b:Toggle("AutoTpEggs",function(bool)
+f:Toggle("Auto Tp Eggs",function(bool)
     shared.toggle = bool
     AutoTpEggs = bool
 end)
 
-b:Toggle("AutoClaimQuests",function(bool)
+f:Toggle("Auto Claim Quests",function(bool)
     shared.toggle = bool
     AutoCollectQuests = bool
 end)
 
-b:Toggle("AutoSpinWheel",function(bool)
+f:Toggle("Auto Spin Wheel",function(bool)
     shared.toggle = bool
     AutoSpinWheel = bool
 end)
 
-f:Toggle("Potions",function(bool)
+b:Toggle("Potions",function(bool)
     shared.toggle = bool
     Potions = bool
 end)
 
-f:Toggle("Dna",function(bool)
+b:Toggle("Dna",function(bool)
     shared.toggle = bool
     Dna = bool
 end)
 
-f:Toggle("Rank",function(bool)
+b:Toggle("Rank",function(bool)
     shared.toggle = bool
     Rank = bool
 end)
 
-f:Toggle("Double Jumps",function(bool)
+b:Toggle("Double Jumps",function(bool)
     shared.toggle = bool
     DoubleJumps = bool
 end)
 
-d:Toggle("Open",function(bool)
+b:Toggle("Open Egg",function(bool)
     shared.toggle = bool
     Open = bool
 end)
 
-d:Dropdown("Egg",{"Basic Egg","Sky Egg","Galaxy Egg","Evil Corp Egg","Rephaite Egg","Inferno Egg","Omega Egg","Cake Egg","Bunny Egg"},true,function(egg)
+b:Dropdown("Egg",{"Basic Egg","Sky Egg","Galaxy Egg","Evil Corp Egg","Rephaite Egg","Inferno Egg","Omega Egg","Cake Egg","Bunny Egg"},true,function(egg)
     CE = egg
 end)
 
-e:Toggle("AntiAfk",function(bool)
-    shared.toggle = bool
-    AntiAfk = bool
-end)
-
-e:Button("Speed",function()
-    game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = S
-end)
-
-e:Box("Speed","32",function(value)
-    S = value
+--[Extras]--
+e:Box("Speed","number",function(value)
+    game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
 end)
 
 e:Button("Inf Jumps",function()
@@ -96,19 +101,43 @@ e:Button("Unlock All Islands",function()
         end
     end
 end)
---Credits
-u:Button("Pojken#9816",function()
+
+e:Button("Pets Equiped Vissual",function()
+    string = game:GetService("Players")[player.Name].PlayerGui.GUI.Inventory.Frame.Window.Headers.Pets.EquipLimit.Amount.Text
+    a,b = string:match("(.+)/(.+)")
+    game:GetService("Players")[player.Name].PlayerGui.GUI.Inventory.Frame.Window.Headers.Pets.EquipLimit.Amount.Text = a.."/"..a
+end)
+
+e:Toggle("AntiAfk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--[Settings]--
+s:Bind("Hide Gui Hotkey",Enum.KeyCode.H,function()
+    for i = 1, #COREGUI do 
+        if COREGUI[i].Visible == true then
+            COREGUI[i].Visible = false
+        else
+            COREGUI[i].Visible = true
+        end
+    end
+end)
+
+--[Credits]--
+c:Button("Pojken#9816",function()
     setclipboard("Pojken#9816")
 end)
 
-u:Button("maxgat5#8395",function()
+c:Button("maxgat5#8395",function()
     setclipboard("maxgat5#8395")
 end)
  
-u:Button("Discord Server",function()
+c:Button("Discord Server",function()
     setclipboard("https://discord.gg/K4txdRSVfq")
 end)
 
+--[Functions]--
 while true do
     wait()
     if Rank == true then
