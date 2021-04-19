@@ -68,3 +68,7 @@ end
 if game.PlaceId == 5542675711 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/WildWorms')))()
 end
+--[Mining Frenzy]--
+if game.PlaceId == 6233747376 then
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/MiningFrenzy')))()
+end
