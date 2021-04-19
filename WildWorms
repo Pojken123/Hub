@@ -1,6 +1,6 @@
 --[Create Gui]--
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
-local w = library:CreateWindow("Dinosaur City")
+local w = library:CreateWindow("Wild Worms")
 local b = w:CreateFolder("Auto Farm")
 local e = w:CreateFolder("Extras")
 local s = w:CreateFolder("Settings")
