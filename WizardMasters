@@ -1,0 +1,167 @@
+--[Create Gui]--
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("Game")
+local f = w:CreateFolder("Auto Farm")
+local b = w:CreateFolder("Auto Buy")
+local e = w:CreateFolder("Extras")
+local s = w:CreateFolder("Settings")
+local c = w:CreateFolder("Credits")
+
+--[Variables]--
+local player = game.Players.LocalPlayer
+local COREGUI = {}
+local coregui = game.CoreGui:GetDescendants()
+for i = 1, #coregui do 
+    local v = coregui[i]
+    if v.Name == "Window" and v.ClassName == "ImageLabel" then
+        table.insert(COREGUI,v)
+    end
+end
+
+local EGGS = {"Normal Egg", "Birds Egg","Egypt Egg","Frozen Egg","Space Egg","Volcano Egg"}
+local EGG = game:GetService("Workspace").EggSystem.Egg1
+
+--[Buttons]--
+f:Toggle("Auto Click",function(bool)
+    shared.toggle = bool
+    AutoClick = bool
+end)
+
+f:Toggle("Auto Collect Coins",function(bool)
+    shared.toggle = bool
+    AutoCollectCoins = bool
+end)
+
+f:Toggle("Auto Sell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+f:Toggle("Auto Teleport Crown",function(bool)
+    shared.toggle = bool
+    AutoTeleportCrown = bool
+end)
+
+b:Toggle("Auto Buy Backpack",function(bool)
+    shared.toggle = bool
+    AutoBuyBackpack = bool
+end)
+
+b:Toggle("Auto Buy Staff",function(bool)
+    shared.toggle = bool
+    AutoBuyStaff = bool
+end)
+
+b:Toggle("Auto Open Eggs",function(bool)
+    shared.toggle = bool
+    AutoOpenEggs = bool
+end)
+
+b:Dropdown("Choose Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],},true,function(Value)
+    for i = 1, #EGGS do
+        if EGGS[i] == Value then
+            EGG = game:GetService("Workspace").EggSystem["Egg"..i]
+        end
+    end
+end)
+
+--[Extras]--
+e:Toggle("Anti Afk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--[Settings]--
+s:Bind("Hide Gui Hotkey",Enum.KeyCode.H,function()
+    for i = 1, #COREGUI do 
+        if COREGUI[i].Visible == true then
+            COREGUI[i].Visible = false
+        else
+            COREGUI[i].Visible = true
+        end
+    end
+end)
+
+--[Credits]--
+c:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+--[Functions]--
+while wait() do
+    if AutoClick == true then
+        if workspace[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid") then
+            local tool = game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+            game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool)
+            if game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+                tool:Activate()
+            end
+        end
+    end
+
+    if AutoCollectCoins == true then
+        local coins = game:GetService("Workspace").Coins:GetChildren()
+        for i, v in pairs(coins) do
+            firetouchinterest(v, game:GetService("Workspace")[player.Name].HumanoidRootPart, 0)
+            firetouchinterest(v, game:GetService("Workspace")[player.Name].HumanoidRootPart, 1)
+            wait()
+        end
+    end
+
+    if AutoSell == true then
+        local sell = game:GetService("Workspace").Sells.VulcanoIsland
+        string = game:GetService("Players")[player.Name].PlayerGui.Menu.Currencys.Crystals.Texto.Text
+        a,b = string:match("(.+)/(.+)")
+        if a == b then
+            local playerposition = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame.Position + Vector3.new(0,0,0)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(sell.CFrame.Position + Vector3.new(0,0,0))
+            wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(playerposition)
+        end 
+    end
+
+    if AutoTeleportCrown == true then
+        if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Floating.Crown["Ring Mesh"].CFrame.Position + Vector3.new(0,-15,0))
+        end
+    end
+
+    if AutoBuyBackpack == true then
+        game:GetService("ReplicatedStorage").Events.ItemShop:FireServer(game:GetService("Players").LocalPlayer.PlayerData.Backpack,1,"BP","All")
+    end
+
+    if AutoBuyStaff == true then
+        game:GetService("ReplicatedStorage").Events.ItemShop:FireServer(game:GetService("Players").LocalPlayer.PlayerData.Staff,1,"S","All")
+    end
+
+    if AutoOpenEggs == true then
+        game:GetService("ReplicatedStorage").Events.BuyEgg:InvokeServer(EGG)
+    end
+
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
+
+--[[
+How to refresh a dropdown:
+1)Create the dropdown and save it in a variable
+local yourvariable = b:Dropdown("Hi",yourtable,function(a)
+    print(a)
+end)
+2)Refresh it using the function
+yourvariable:Refresh(yourtable)
+How to refresh a label:
+1)Create your label and save it in a variable
+local yourvariable = b:Label("Pretty Useless NGL",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+})
+2)Refresh it using the function
+yourvariable:Refresh("Hello") It will only change the text ofc
+]]
