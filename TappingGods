@@ -1,0 +1,103 @@
+--[Create Gui]--
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("Tapping Gods")
+local f = w:CreateFolder("Auto Farm")
+local b = w:CreateFolder("Auto Buy")
+local e = w:CreateFolder("Extras")
+local s = w:CreateFolder("Settings")
+local c = w:CreateFolder("Credits")
+
+--[Variables]--
+local player = game.Players.LocalPlayer
+local stuff = {}
+local coregui = game.CoreGui:GetDescendants()
+for i = 1, #coregui do 
+    local v = coregui[i]
+    if v.Name == "Window" and v.ClassName == "ImageLabel" then
+        table.insert(stuff,v)
+    end
+end
+local R = 1
+local EGGS = {"Starter Egg","Spiky Egg","Elemental Egg"}
+local E = "Starter Egg"
+
+--[Auto Farm]--
+f:Toggle("Auto Click",function(bool)
+    shared.toggle = bool
+    AutoClick = bool
+end)
+
+f:Toggle("Auto Attack Boss",function(bool)
+    shared.toggle = bool
+    AutoAttackBoss = bool
+end)
+
+--[Auto Buy]--
+b:Toggle("Rebirths",function(bool)
+    shared.toggle = bool
+    AutoBuyRebirths = bool
+end)
+
+b:Box("Rebirth Amount","number",function(value)
+    R = tonumber(value)
+end)
+
+b:Toggle("Eggs",function(bool)
+    shared.toggle = bool
+    AutoBuyEggs = bool
+end)
+
+b:Dropdown("Dropdown",{EGGS[1],EGGS[2],EGGS[3]},true,function(value)
+    E = value
+end)
+
+--[Extras]--
+e:Toggle("Anti Afk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--[Settings]--
+s:Bind("Hide Gui Hotkey",Enum.KeyCode.H,function()
+    for i = 1, #stuff do 
+        if stuff[i].Visible == true then
+            stuff[i].Visible = false
+        else
+            stuff[i].Visible = true
+        end
+    end
+end)
+
+--[Credits]--
+c:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+--[Functions]--
+while wait() do
+    if AutoClick == true then
+        game:GetService("ReplicatedStorage").Events.Tap:FireServer()
+    end
+
+    if AutoBuyRebirths == true then
+        game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(R)
+    end
+
+    if AutoBuyEggs == true then
+        game:GetService("ReplicatedStorage").Events.OpenEgg:FireServer(E)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Eggs[E].EggName.CFrame.Position + Vector3.new(0,3,0))
+    end
+
+    if AutoAttackBoss == true then
+        game:GetService("ReplicatedStorage").BossStuff.Yes:InvokeServer()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Bosses.Spawn.Zone.Floor.CFrame.Position + Vector3.new(0,3,0))
+    end
+
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
