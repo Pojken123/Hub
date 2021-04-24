@@ -19,7 +19,7 @@ for i = 1, #coregui do
 end
 local world = "1"
 local mob = 1
-local MOBS = {"Goblin","Forest Sprite","Corrupted Forest Sprite","Pharoah","Void-Touched Pharoah","Ancient Bastet","Ice Giant","Frost General","Frozen Lord","Volcano Minion","Inferno Giant","Inferno Gladiator","Ruby Knight","Crimson Warrior","Supreme Warlord","Murfish","Possesed Murfish","Drowned Pirate Captain","Clockwork Engineer","Rusted Clockwork Engineer","Mechanical Goliath"}
+local MOBS = {"Forest Sprite","Corrupted Forest Sprite","Pharoah","Void-Touched Pharoah","Ancient Bastet","Ice Giant","Frost General","Frozen Lord","Volcano Minion","Inferno Giant","Inferno Gladiator","Ruby Knight","Crimson Warrior","Supreme Warlord","Murfish","Possesed Murfish","Drowned Pirate Captain","Clockwork Engineer","Rusted Clockwork Engineer","Mechanical Goliath"}
 local boss = 6
 local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2","Clockwork"}
 local E = 1
@@ -34,26 +34,26 @@ end)
 f:Dropdown("Enemy",{MOBS[1],MOBS[2],MOBS[3],MOBS[4],MOBS[5],MOBS[6],MOBS[7],MOBS[8],MOBS[9],MOBS[10],MOBS[11],MOBS[12],MOBS[13],MOBS[14],MOBS[15],MOBS[16],MOBS[17],MOBS[18],MOBS[19],MOBS[20],MOBS[21],},true,function(Value) 
     for i = 1, #MOBS do
         if Value == MOBS[i] then
-            mob = i
-            if Value == MOBS[1] or Value == MOBS[2] or Value == MOBS[3] then
+            mob = i + 1
+            if Value == MOBS[1] or Value == MOBS[2] then
                 world = "1"
             end
-            if Value == MOBS[4] or Value == MOBS[5] or Value == MOBS[6] then
+            if Value == MOBS[4] or Value == MOBS[5] or Value == MOBS[3] then
                 world = "2"
             end
-            if Value == MOBS[7] or Value == MOBS[8] or Value == MOBS[9] then
+            if Value == MOBS[7] or Value == MOBS[8] or Value == MOBS[6] then
                 world = "3"
             end
-            if Value == MOBS[10] or Value == MOBS[11] or Value == MOBS[12] then
+            if Value == MOBS[10] or Value == MOBS[11] or Value == MOBS[9] then
                 world = "4"
             end
-            if Value == MOBS[13] or Value == MOBS[14] or Value == MOBS[15] then
+            if Value == MOBS[13] or Value == MOBS[14] or Value == MOBS[12] then
                 world = "5"
             end
-            if Value == MOBS[16] or Value == MOBS[17] or Value == MOBS[18] then
+            if Value == MOBS[16] or Value == MOBS[17] or Value == MOBS[15] then
                 world = "6"
             end
-            if Value == MOBS[19] or Value == MOBS[20] or Value == MOBS[21] then
+            if Value == MOBS[19] or Value == MOBS[20] or Value == MOBS[18] then
                 world = "7"
             end
         end
