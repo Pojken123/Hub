@@ -18,18 +18,13 @@ for i = 1, #coregui do
     end
 end
 local R = 1
-local EGGS = {"Starter Egg","Spiky Egg","Elemental Egg"}
+local EGGS = {"Starter Egg","Spiky Egg","Elemental Egg","Anime Egg","1M Egg"}
 local E = "Starter Egg"
 
 --[Auto Farm]--
 f:Toggle("Auto Click",function(bool)
     shared.toggle = bool
     AutoClick = bool
-end)
-
-f:Toggle("Auto Attack Boss",function(bool)
-    shared.toggle = bool
-    AutoAttackBoss = bool
 end)
 
 --[Auto Buy]--
@@ -47,8 +42,13 @@ b:Toggle("Eggs",function(bool)
     AutoBuyEggs = bool
 end)
 
-b:Dropdown("Dropdown",{EGGS[1],EGGS[2],EGGS[3]},true,function(value)
+b:Dropdown("Dropdown",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5]},true,function(value)
     E = value
+end)
+
+b:Toggle("Auto Craft Pets",function(bool)
+    shared.toggle = bool
+    AutoCraftPets = bool
 end)
 
 --[Extras]--
@@ -88,9 +88,12 @@ while wait() do
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Eggs[E].EggName.CFrame.Position + Vector3.new(0,3,0))
     end
 
-    if AutoAttackBoss == true then
-        game:GetService("ReplicatedStorage").BossStuff.Yes:InvokeServer()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Bosses.Spawn.Zone.Floor.CFrame.Position + Vector3.new(0,3,0))
+    if AutoCraftPets == true then
+        local pets = game:GetService("Players").LocalPlayer.Pets:GetChildren()
+        for i,v in pairs(pets) do
+            game:GetService("ReplicatedStorage").Events.PetAction:InvokeServer("Craft",v.Name)
+            wait()
+        end
     end
 
     if AntiAfk == true then
