@@ -19,9 +19,9 @@ for i = 1, #coregui do
 end
 local world = "1"
 local mob = 1
-local MOBS = {"Forest Sprite","Corrupted Forest Sprite","Pharoah","Void-Touched Pharoah","Ancient Bastet","Ice Giant","Frost General","Frozen Lord","Volcano Minion","Inferno Giant","Inferno Gladiator","Ruby Knight","Crimson Warrior","Supreme Warlord","Murfish","Possesed Murfish","Drowned Pirate Captain","Clockwork Engineer","Rusted Clockwork Engineer","Mechanical Goliath"}
+local MOBS = {"Forest Sprite","Corrupted Forest Sprite","Pharoah","Void-Touched Pharoah","Ancient Bastet","Ice Giant","Frost General","Frozen Lord","Volcano Minion","Inferno Giant","Inferno Gladiator","Ruby Knight","Crimson Warrior","Supreme Warlord","Murfish","Possesed Murfish","Drowned Pirate Captain","Clockwork Engineer","Rusted Clockwork Engineer","Mechanical Goliath","There is no mob here","Hollow Fiend","Scorching Fiend","Thunderous World Breaker"}
 local boss = 6
-local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2","Clockwork"}
+local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2","Clockwork","World Breaker","Corruption Egg"}
 local E = 1
 local EA = 1
 
@@ -31,7 +31,7 @@ f:Toggle("Auto Tp Mobs",function(bool)
     AutoTpMobs = bool
 end)
 
-f:Dropdown("Enemy",{MOBS[1],MOBS[2],MOBS[3],MOBS[4],MOBS[5],MOBS[6],MOBS[7],MOBS[8],MOBS[9],MOBS[10],MOBS[11],MOBS[12],MOBS[13],MOBS[14],MOBS[15],MOBS[16],MOBS[17],MOBS[18],MOBS[19],MOBS[20],MOBS[21],},true,function(Value) 
+f:Dropdown("Enemy",{MOBS[1],MOBS[2],MOBS[3],MOBS[4],MOBS[5],MOBS[6],MOBS[7],MOBS[8],MOBS[9],MOBS[10],MOBS[11],MOBS[12],MOBS[13],MOBS[14],MOBS[15],MOBS[16],MOBS[17],MOBS[18],MOBS[19],MOBS[20],MOBS[22],MOBS[23],MOBS[24],},true,function(Value) 
     for i = 1, #MOBS do
         if Value == MOBS[i] then
             mob = i + 1
@@ -55,6 +55,9 @@ f:Dropdown("Enemy",{MOBS[1],MOBS[2],MOBS[3],MOBS[4],MOBS[5],MOBS[6],MOBS[7],MOBS
             end
             if Value == MOBS[19] or Value == MOBS[20] or Value == MOBS[18] then
                 world = "7"
+            end
+            if Value == MOBS[24] or Value == MOBS[22] or Value == MOBS[23] then
+                world = "8"
             end
         end
     end
@@ -81,7 +84,7 @@ b:Toggle("Eggs",function(bool)
     AutoBuyEggs = bool
 end)
 
-b:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9],EGGS[10],EGGS[11],EGGS[12]},true,function(egg)
+b:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7],EGGS[8],EGGS[9],EGGS[10],EGGS[11],EGGS[12],EGGS[13],EGGS[14]},true,function(egg)
     for i = 1, #EGGS do
         if egg == EGGS[i] then
             E = i
@@ -229,6 +232,12 @@ while wait() do
 
             if world == "7" then
                 if v.Name == "7" then
+                    tp()
+                end
+            end
+
+            if world == "8" then
+                if v.Name == "8" then
                     tp()
                 end
             end
