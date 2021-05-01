@@ -133,14 +133,13 @@ while wait() do
 
     if AutoBuyEggs == true then
         game:GetService("ReplicatedStorage").Events.OpenEgg:FireServer(E)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Eggs[E].EggName.CFrame.Position + Vector3.new(0,3,0))
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Eggs[E].EggName.CFrame.Position + Vector3.new(0,3,0))
     end
 
     if AutoDeletePets == true then
         local pets = game:GetService("Players").LocalPlayer.Pets:GetChildren()
         for i,v in pairs(pets) do
             if common == true then
-                print("dab")
                 if v.PetName.Value == COMMON[1] or v.PetName.Value == COMMON[2] then
                     game:GetService("ReplicatedStorage").Events.PetAction:InvokeServer("Delete", v.Name)
                     game:GetService("Players").LocalPlayer.PlayerGui.CoreUI.Frames.Pets.Holder["Pet List"].ScrollingFrame.Frame[v.Name]:Destroy()
