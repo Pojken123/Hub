@@ -20,6 +20,16 @@ end
 local R = 1
 local EGGS = {"Starter Egg","Spiky Egg","Elemental Egg","Anime Egg","1M Egg"}
 local E = "Starter Egg"
+local common = false
+local uncommon = false
+local rare = false
+local epic = false
+local legendary = false
+local COMMON = {"Mallet","1M Star"}
+local UNCOMMON = {"Ballons","1M Ballon","Earth Robot","Icy Cat"}
+local RARE = {"Plushie","Ferris Wheel","1M Cool Guy","Fiery Dog"}
+local EPIC = {"Cursed Ballons","1M Emoji","Lightning Fish"}
+local LEGENDARY = {"Cursed Ferris Wheel","1M Trophy"}
 
 --[Auto Farm]--
 f:Toggle("Auto Click",function(bool)
@@ -46,9 +56,47 @@ b:Dropdown("Dropdown",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5]},true,function(va
     E = value
 end)
 
-b:Toggle("Auto Craft Pets",function(bool)
+b:Toggle("Auto Delete Pets",function(bool)
     shared.toggle = bool
-    AutoCraftPets = bool
+    AutoDeletePets = bool
+end)
+
+b:Dropdown("Dropdown",{"Common","Uncommon","Rare","Epic","Legendary"},true,function(value)
+    if value == "Common" then
+        if common == true then
+            common = false
+        else 
+            common = true
+        end
+    end
+    if value == "Uncommon" then
+        if uncommon == true then
+            uncommon = false
+        else 
+            uncommon = true
+        end
+    end
+    if value == "Rare" then
+        if rare == true then
+            rare = false
+        else 
+            rare = true
+        end
+    end
+    if value == "Epic" then
+        if epic == true then
+            epic = false
+        else 
+            epic = true
+        end
+    end
+    if value == "Legendary" then
+        if legendary == true then
+            legendary = false
+        else 
+            legendary = true
+        end
+    end
 end)
 
 --[Extras]--
@@ -88,10 +136,40 @@ while wait() do
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Eggs[E].EggName.CFrame.Position + Vector3.new(0,3,0))
     end
 
-    if AutoCraftPets == true then
+    if AutoDeletePets == true then
         local pets = game:GetService("Players").LocalPlayer.Pets:GetChildren()
         for i,v in pairs(pets) do
-            game:GetService("ReplicatedStorage").Events.PetAction:InvokeServer("Craft",v.Name)
+            if common == true then
+                print("dab")
+                if v.PetName.Value == COMMON[1] or v.PetName.Value == COMMON[2] then
+                    game:GetService("ReplicatedStorage").Events.PetAction:InvokeServer("Delete", v.Name)
+                    game:GetService("Players").LocalPlayer.PlayerGui.CoreUI.Frames.Pets.Holder["Pet List"].ScrollingFrame.Frame[v.Name]:Destroy()
+                end
+            end
+            if uncommon == true then
+                if v.PetName.Value == UNCOMMON[1] or v.PetName.Value == UNCOMMON[2] or v.PetName.Value == UNCOMMON[3] or v.PetName.Value == UNCOMMON[4] then
+                    game:GetService("ReplicatedStorage").Events.PetAction:InvokeServer("Delete", v.Name)
+                    game:GetService("Players").LocalPlayer.PlayerGui.CoreUI.Frames.Pets.Holder["Pet List"].ScrollingFrame.Frame[v.Name]:Destroy()
+                end
+            end
+            if rare == true then
+                if v.PetName.Value == RARE[1] or v.PetName.Value == RARE[2] or v.PetName.Value == RARE[3] or v.PetName.Value == RARE[4] then
+                    game:GetService("ReplicatedStorage").Events.PetAction:InvokeServer("Delete", v.Name)
+                    game:GetService("Players").LocalPlayer.PlayerGui.CoreUI.Frames.Pets.Holder["Pet List"].ScrollingFrame.Frame[v.Name]:Destroy()
+                end
+            end
+            if epic == true then
+                if v.PetName.Value == EPIC[1] or v.PetName.Value == EPIC[2] or v.PetName.Value == EPIC[3] then
+                    game:GetService("ReplicatedStorage").Events.PetAction:InvokeServer("Delete", v.Name)
+                    game:GetService("Players").LocalPlayer.PlayerGui.CoreUI.Frames.Pets.Holder["Pet List"].ScrollingFrame.Frame[v.Name]:Destroy()
+                end
+            end
+            if legendary == true then
+                if v.PetName.Value == LEGENDARY[1] or v.PetName.Value == LEGENDARY[2] then
+                    game:GetService("ReplicatedStorage").Events.PetAction:InvokeServer("Delete", v.Name)
+                    game:GetService("Players").LocalPlayer.PlayerGui.CoreUI.Frames.Pets.Holder["Pet List"].ScrollingFrame.Frame[v.Name]:Destroy()
+                end
+            end
             wait()
         end
     end
