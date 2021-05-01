@@ -18,7 +18,7 @@ for i = 1, #coregui do
     end
 end
 local R = 1
-local EGGS = {"Starter Egg","Spiky Egg","Elemental Egg","Anime Egg","1M Egg"}
+local EGGS = {"Starter Egg","Spiky Egg","Elemental Egg","Anime Egg","1M Egg","Carnival Egg"}
 local E = "Starter Egg"
 local common = false
 local uncommon = false
@@ -52,7 +52,7 @@ b:Toggle("Eggs",function(bool)
     AutoBuyEggs = bool
 end)
 
-b:Dropdown("Dropdown",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5]},true,function(value)
+b:Dropdown("Dropdown",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6]},true,function(value)
     E = value
 end)
 
