@@ -234,16 +234,8 @@ p:Toggle("AntiAfk",function(bool)
 end)
 
 --Credits
-u:Button("Pojken#9816",function()
-    setclipboard("Pojken#9816")
-end)
-
-u:Button("maxgat5#8395",function()
-    setclipboard("maxgat5#8395")
-end)
- 
-u:Button("Discord Server",function()
-    setclipboard("https://discord.gg/K4txdRSVfq")
+u:Button("Pojken#0001",function()
+    setclipboard("Pojken#0001")
 end)
 
 --Toggles
