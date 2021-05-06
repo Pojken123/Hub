@@ -125,7 +125,7 @@ s:Bind("Hide Gui Hotkey",Enum.KeyCode.H,function()
 end)
 
 --[Credits]--
-c:Button("Pojken#9816",function()
+c:Button("Pojken#0001",function()
     setclipboard("Pojken#0001")
 end)
 
