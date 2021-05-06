@@ -126,15 +126,7 @@ end)
 
 --[Credits]--
 c:Button("Pojken#9816",function()
-    setclipboard("Pojken#9816")
-end)
-
-c:Button("maxgat5#8395",function()
-    setclipboard("maxgat5#8395")
-end)
- 
-c:Button("Discord Server",function()
-    setclipboard("https://discord.gg/K4txdRSVfq")
+    setclipboard("Pojken#0001")
 end)
 
 --[Functions]--
