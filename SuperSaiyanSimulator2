@@ -18,6 +18,11 @@ b:Toggle("Auto Fight",function(bool)
     AutoFight = bool
 end)
 
+--[Credits]--
+u:Button("Pojken#0001",function()
+    setclipboard("Pojken#0001")
+end)
+
 while true do 
     wait()
     if AutoHit == true then
