@@ -1,0 +1,163 @@
+--[Create Gui]--
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("Lifting Titans")
+local f = w:CreateFolder("Auto Farm")
+local b = w:CreateFolder("Auto Buy")
+local e = w:CreateFolder("Extras")
+local s = w:CreateFolder("Settings")
+local c = w:CreateFolder("Credits")
+
+--[Variables]--
+local player = game.Players.LocalPlayer
+local stuff = {}
+local coregui = game.CoreGui:GetDescendants()
+for i = 1, #coregui do 
+    local v = coregui[i]
+    if v.Name == "Window" and v.ClassName == "ImageLabel" then
+        table.insert(stuff,v)
+    end
+end
+local WEIGHTS = {"Pencil","Paper","Book","Water Bottle","Clock","Milk","Bat","Football","Bucket","Dumbbell","Monitor","Chair","TV","Bed","Tire","Container","Fridge","Safe","Anchor","Shopping Cart","Green car","Police car","Red van","Yellow van","Taxi","Mail van","Ambulance","Fire truck","THE ROCK","Cloud","Bomb","Nuke","Mountain","Pyramid","Missile","Big Missile","Small Rocket","Medium Rocket","Big Rocket","Temple","Office","Skyscraper","Plane","Pencil","Asteroid","Mars","Earth","Pluto","Uranus","Neptune","Saturn","Jupiter","Black Hole","Charged Black Hole","Sun","Rigel Star","Planets Tower","Solar System","Galaxy","Ligtning","White Hole","Charged White Hole","Heaven Star","Demon Planet","Demon Star","Mega Sun","Mega Neutron Star","Old Galaxy","Mega Galaxy","Galaxy Collission","Supernova","Black Hole Cluster","Galaxy Cluster","Thor Hammer","Demonic Universe","Observable Universe","Old Universe","Parallel Universe","Multiverse","Wind Cube","Water Cube","Fire Cube","Forgotten Cube","Infinity","Mind Stone","Reality Stone","Time Stone","Space Stone","Power Stone"}
+local DNA = {"Normal","Noob","Adult","Puppy","Doggy","Fox","Bear","Donkey","Lion","Zebra","Crocodile","Whale","Earth","Aqua","Nature","Sky","Cloud","Baby-angel","Angel","Giant-octopus","Electric","Spark-spark","Neon","Galaxy","Iluminate","Lucky","Flamin","Love","Red-dragon","Demon","Void-dragon","Moon","Mars","Climate","Youtube","Star","Overlord","Monster","Money","Techno","Tiger","Troll","Dragon","Buff","Hawk","Mushroom","Galactic","Reaper","Rainbow","Hydra","Forcefield","Wind","Strawberry","Snowfox","Gladiator","Swag","Foxy","Unicorn"}
+local STAGES = {"Stage 1","Stage 2","Stage 3","Stage 4","Stage 5","Stage 6","Stage 7","Stage 8","Stage 9","Stage 10","Stage 11","Stage 12","Stage 13","Stage 14","Stage 15","Stage 16","Stage 17","Stage 18","Stage 19","Stage 20","Stage 21","Stage 22","Stage 23","Stage 24"}
+local EGGS = {"Farm Egg","Youtube Egg","Jungle Egg","10M Egg","Heaven Egg","Space Egg","Future Egg"}
+local E = "Farm Egg"
+local A = 3
+local AutoBuyDNA = true
+local AutoBuyWeights = true
+local AutoBuyStages = true
+
+--[Auto Farm]--
+f:Toggle("Auto Lift",function(bool)
+    shared.toggle = bool
+    AutoLift = bool
+end)
+
+f:Toggle("Auto Sell",function(bool)
+    shared.toggle = bool
+    AutoSell = bool
+end)
+
+--[Auto Buy]--
+b:Toggle("Auto Buy",function(bool)
+    shared.toggle = bool
+    AutoBuy = bool
+end)
+
+b:Dropdown("Buy",{"Weights","DNA","Stages","All"},true,function(Value) 
+    if Value == "Weights" then
+        AutoBuyStages = false
+        AutoBuyDNA = false
+        AutoBuyWeights = true
+    end
+    if Value == "DNA" then
+        AutoBuyWeights = false
+        AutoBuyStages = false
+        AutoBuyDNA = true
+    end
+    if Value == "Stages" then
+        AutoBuyDNA = false
+        AutoBuyWeights = false
+        AutoBuyStages = true
+    end
+    if Value == "All" then
+        AutoBuyDNA = true
+        AutoBuyWeights = true
+        AutoBuyStages = true
+    end
+end)
+
+b:Toggle("Auto Buy Eggs",function(bool)
+    shared.toggle = bool
+    AutoBuyEggs = bool
+end)
+
+b:Dropdown("Egg",{EGGS[1],EGGS[2],EGGS[3],EGGS[4],EGGS[5],EGGS[6],EGGS[7]},true,function(Value) 
+    E = Value
+end)
+
+b:Dropdown("Amount",{"1", "3"},true,function(Value) 
+    A = tonumber(Value)
+end)
+
+--[Extras]--
+e:Dropdown("Teleport",{"Rainbow Gym","Backyard Gym","Beach Gym","Cliffside Gym","Volcanic Gym","Desert Gym","Forest Gym","Heaven Gym","Space Gym","Future Gym"},false,function(Value) 
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").GymBarriers[Value].CFrame.Position + Vector3.new(0,0,0))
+end)
+
+e:Button("Open Shop", function()
+    game:GetService("Players").lizza0202.PlayerGui.MainUis.Menus.ShopSelectMenu.Visible = true
+end)
+
+e:Toggle("Anti Afk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+end)
+
+--[Settings]--
+s:Bind("Hide Gui Hotkey",Enum.KeyCode.H,function()
+    for i = 1, #stuff do 
+        if stuff[i].Visible == true then
+            stuff[i].Visible = false
+        else
+            stuff[i].Visible = true
+        end
+    end
+end)
+
+--[Credits]--
+c:Button("Pojken#9816",function()
+    setclipboard("Pojken#9816")
+end)
+
+--[Functions]--
+while wait() do
+    if AutoLift == true then
+        game:GetService("ReplicatedStorage").Remotes.OnLift:FireServer()
+    end
+
+    if AutoSell == true then
+        game:GetService("ReplicatedStorage").Remotes.Sell:FireServer()
+    end
+
+    if AutoBuy == true then
+        if AutoBuyWeights == true then
+            for i, v in pairs(WEIGHTS) do
+                if not game:GetService("Players").LocalPlayer.leaderstats.OwnedStuff.Weights:FindFirstChild(v) then
+                    game:GetService("ReplicatedStorage").Remotes.Buy:FireServer("Weights", v)
+                end
+                wait()
+            end
+        end
+
+        if AutoBuyDNA == true then
+            for i, v in pairs(DNA) do
+                if not game:GetService("Players").LocalPlayer.leaderstats.OwnedStuff.DNA:FindFirstChild(v) then
+                    game:GetService("ReplicatedStorage").Remotes.Buy:FireServer("DNA", v)
+                end
+                wait()
+            end
+        end
+
+        if AutoBuyStages == true then
+            for i, v in pairs(STAGES) do
+                if not game:GetService("Players").LocalPlayer.leaderstats.OwnedStuff.Stage:FindFirstChild(v) then
+                    game:GetService("ReplicatedStorage").Remotes.Buy:FireServer("Stage", v)
+                end
+                wait()
+            end
+        end
+    end
+
+    if AutoBuyEggs == true then
+        game:GetService("ReplicatedStorage").Remotes.HatchEgg:InvokeServer(E, A)
+    end
+
+    if AntiAfk == true then
+        local bb=game:service'VirtualUser'
+        game:service'Players'.LocalPlayer.Idled:connect(function()
+            bb:CaptureController()
+            bb:ClickButton2(Vector2.new())
+        end)
+    end
+end
