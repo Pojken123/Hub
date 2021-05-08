@@ -37,7 +37,7 @@ for i = 1, #coregui do
 end
 local world = "1"
 local mob = 1
-local MOBS = {"Goblin","Forest Sprite","Corrupted Forest Sprite","Pharoah","Void-Touched Pharoah","Ancient Bastet","Ice Giant","Frost General","Frozen Lord","Volcano Minion","Inferno Giant","Inferno Gladiator","Ruby Knight","Crimson Warrior","Supreme Warlord","Murfish","Possesed Murfish","Drowned Pirate Captain","Clockwork Engineer","Rusted Clockwork Engineer","Mechanical Goliath","There is no mob here","Hollow Fiend","Scorching Fiend","Thunderous World Breaker"}
+local MOBS = {"Goblin","Forest Sprite","Corrupted Forest Sprite","Pharoah","Void-Touched Pharoah","Ancient Bastet","Ice Giant","Frost General","Frozen Lord","Volcano Minion","Inferno Giant","Inferno Gladiator","Ruby Knight","Crimson Warrior","Supreme Warlord","Murfish","Possesed Murfish","Drowned Pirate Captain","Clockwork Engineer","Rusted Clockwork Engineer","Mechanical Goliath","There is no mob here","Hollow Fiend","Scorching Fiend","Thunderous World Breaker","Red Belt Ninja","Green Belt Ninja","Master Student"}
 local boss = 6
 local EGGS = {"Spawn 1","Spawn 2","Desert 1","Desert 2","Frozen","Lava 1","Lava 2","Demon","Only Good Demon Pets?","Water 1","Water 2","Clockwork","World Breaker","Corruption Egg"}
 local E = 1
@@ -50,7 +50,7 @@ f:Toggle("Auto Tp Mobs",function(bool)
     AutoTpMobs = bool
 end)
 
-f:Dropdown("Enemy",{MOBS[1],MOBS[2],MOBS[3],MOBS[4],MOBS[5],MOBS[6],MOBS[7],MOBS[8],MOBS[9],MOBS[10],MOBS[11],MOBS[12],MOBS[13],MOBS[14],MOBS[15],MOBS[16],MOBS[17],MOBS[18],MOBS[19],MOBS[20],MOBS[21],MOBS[23],MOBS[24],MOBS[25]},true,function(Value) 
+f:Dropdown("Enemy",{MOBS[1],MOBS[2],MOBS[3],MOBS[4],MOBS[5],MOBS[6],MOBS[7],MOBS[8],MOBS[9],MOBS[10],MOBS[11],MOBS[12],MOBS[13],MOBS[14],MOBS[15],MOBS[16],MOBS[17],MOBS[18],MOBS[19],MOBS[20],MOBS[21],MOBS[23],MOBS[24],MOBS[25],MOBS[26],MOBS[27],MOBS[28]},true,function(Value) 
     for i = 1, #MOBS do
         if Value == MOBS[i] then
             mob = i 
@@ -77,6 +77,9 @@ f:Dropdown("Enemy",{MOBS[1],MOBS[2],MOBS[3],MOBS[4],MOBS[5],MOBS[6],MOBS[7],MOBS
             end
             if Value == MOBS[25] or Value == MOBS[23] or Value == MOBS[24] then
                 world = "8"
+            end
+            if Value == MOBS[26] or Value == MOBS[27] or Value == MOBS[28] then
+                world = "9"
             end
         end
     end
@@ -283,6 +286,12 @@ while wait() do
 
             if world == "8" then
                 if v.Name == "8" then
+                    tp()
+                end
+            end
+
+            if world == "9" then
+                if v.Name == "9" then
                     tp()
                 end
             end
