@@ -17,7 +17,7 @@ local LAVAMONSTER = false
 local GHOSTPIRATE = false
 local TIKIMONSTER = false
 local E = 1
-local ENEMIES = {"Evil Shroom","Evil Yeti","Deermon","Creepy Cat","Enchanted Cobra","Cursed Mummy","Wicked Wolf","Evil Frozen Yeti","Dark Spike","Creepy Slime","Deadly Elephant","Evil Ogre","Dark Cloud","Enchanted Macaw","Crazy Unicorn","Raging Lion","Mad Golum","Forbidden Dragon","Cursed Medusa","Dark Griffin","Evil Minotaur","Angry Crab","Deadly Octopus","Evil Starfish","Dark Planet","Menacing Sting","Vile Bat","Cursed Moai","Mad Penguin","Terror Tree"}
+local ENEMIES = {"Evil Shroom","Evil Yeti","Deermon","Creepy Cat","Enchanted Cobra","Cursed Mummy","Wicked Wolf","Evil Frozen Yeti","Dark Spike","Creepy Slime","Deadly Elephant","Evil Ogre","Dark Cloud","Enchanted Macaw","Crazy Unicorn","Raging Lion","Mad Golum","Forbidden Dragon","Cursed Medusa","Dark Griffin","Evil Minotaur","Angry Crab","Deadly Octopus","Evil Starfish","Dark Planet","Menacing Sting","Vile Bat","Cursed Moai","Mad Penguin","Terror Tree","Rotten Bush","Deadly Beetle","Dark Knight"}
 local EGGS = {"Forest Egg1","Forest Egg2","Forest Egg3","Desert Egg1","Desert Egg2","Desert Egg3","Frozen Egg1","Frozen Egg2","Frozen Egg3","Swamp Egg1","Swamp Egg2","Swamp Egg3","Sky Egg1","Sky Egg2","Sky Egg3","Magma Egg1","Magma Egg2","Magma Egg3","Atlantis Egg1","Atlantis Egg2","Atlantis Egg3","Aqua Egg1","Aqua Egg2","Aqua Egg3","Cosmos Egg1","Cosmos Egg2","Cosmos Egg3","Tiki Island Egg1","Tiki Island Egg2","Tiki Island Egg3","Egg Of Oblivion","Mythical Egg","Legendary Egg","Naga Boss Egg","Lava Monster Boss Egg","Ghost Pirate Boss Egg","Tiki Boss Egg"}
 local BOSSES = {"Naga","Lava Monster","Ghost Pirate","Tiki Monster"}
 
@@ -27,7 +27,7 @@ b:Toggle("Auto Collect Food",function(bool)
     AutoCollectFood = bool
 end)
 
-b:Dropdown("Zone",{"Zone1","Zone2","Zone3","Zone4","Zone5","Zone6","Zone7","Zone8","Zone9","Zone10"},true,function(zone)
+b:Dropdown("Zone",{"Zone1","Zone2","Zone3","Zone4","Zone5","Zone6","Zone7","Zone8","Zone9","Zone10","Zone11"},true,function(zone)
     FZ = zone
 end)
 
@@ -36,7 +36,7 @@ b:Toggle("Auto Attack Enemy",function(bool)
     AutoAttackEnemies = bool
 end)
 
-b:Dropdown("Enemy",{ENEMIES[1],ENEMIES[2],ENEMIES[3],ENEMIES[4],ENEMIES[5],ENEMIES[6],ENEMIES[7],ENEMIES[8],ENEMIES[9],ENEMIES[10],ENEMIES[11],ENEMIES[12],ENEMIES[13],ENEMIES[14],ENEMIES[15],ENEMIES[16],ENEMIES[17],ENEMIES[18],ENEMIES[19],ENEMIES[20],ENEMIES[21],ENEMIES[22],ENEMIES[23],ENEMIES[24],ENEMIES[25],ENEMIES[26],ENEMIES[27],ENEMIES[28],ENEMIES[29],ENEMIES[30]},true,function(enemy)
+b:Dropdown("Enemy",{ENEMIES[1],ENEMIES[2],ENEMIES[3],ENEMIES[4],ENEMIES[5],ENEMIES[6],ENEMIES[7],ENEMIES[8],ENEMIES[9],ENEMIES[10],ENEMIES[11],ENEMIES[12],ENEMIES[13],ENEMIES[14],ENEMIES[15],ENEMIES[16],ENEMIES[17],ENEMIES[18],ENEMIES[19],ENEMIES[20],ENEMIES[21],ENEMIES[22],ENEMIES[23],ENEMIES[24],ENEMIES[25],ENEMIES[26],ENEMIES[27],ENEMIES[28],ENEMIES[29],ENEMIES[30],ENEMIES[31],ENEMIES[32],ENEMIES[33]},true,function(enemy)
     if enemy == ENEMIES[1] or ENEMIES[2] or ENEMIES[3] then
         if  enemy == "Evil Yeti" then
             AE = "Evil Foot"
@@ -80,6 +80,10 @@ b:Dropdown("Enemy",{ENEMIES[1],ENEMIES[2],ENEMIES[3],ENEMIES[4],ENEMIES[5],ENEMI
     if enemy == ENEMIES[28] or enemy == ENEMIES[29] or enemy == ENEMIES[30] then
         AE = enemy
         EZ = "Zone10"
+    end
+    if enemy == ENEMIES[31] or enemy == ENEMIES[32] or enemy == ENEMIES[33] then
+        AE = enemy
+        EZ = "Zone11"
     end
 end)
 
