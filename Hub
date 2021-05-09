@@ -40,8 +40,6 @@ elseif game.PlaceId == 5346447287 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/TappingGods')))()
 elseif game.PlaceId == 6531005851 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/LiftingTitans')))()
-elseif game.PlaceId == 6447888702 or game.PlaceId == 6681409037 or game.PlaceId == 6491737703 then
-    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/WizardConquest')))()
 else
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/NoGame')))()
 end
