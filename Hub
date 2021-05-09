@@ -1,90 +1,47 @@
---[NoGame]--
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/NoGame')))()
---[Brain Simulator]--
 if game.PlaceId == 5959521677 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/BrainSimulator')))()
-end
---[CoinsHeroSimulator]--
-if game.PlaceId == 5827078246 then
+elseif game.PlaceId == 5827078246 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/CoinsHeroSimulator')))()
-end
---[GiantSimulator]--
-if game.PlaceId == 2986677229 then
+elseif game.PlaceId == 2986677229 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/GiantSimulator')))()
-end
---[Ore Magnet Simulator]--
-if game.PlaceId == 6425918578 then
+elseif game.PlaceId == 6425918578 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/OreMagnetSimulator')))()
-end
---[Pet Swarm Simulator]--
-if game.PlaceId == 6331132338 then
+elseif game.PlaceId == 6331132338 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/PetSwarmSimulator')))()
-end
---[Saber Simulator]--
-if game.PlaceId == 3823781113 then
+elseif game.PlaceId == 3823781113 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/SaberSimulator')))()
-end
---[Speed Run Simulator]--
-if game.PlaceId == 5293755937 then
+elseif game.PlaceId == 5293755937 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/SpeedRunSimulator')))()
-end
---[Super Saiyan Simulator 2]--
-if game.PlaceId == 3177438863 then
+elseif game.PlaceId == 3177438863 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/SuperSaiyanSimulator2')))()
-end
---[Supernatural Simulator]--
-if game.PlaceId == 6273865312 then
+elseif game.PlaceId == 6273865312 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/SupernaturalSimulator')))()
-end
---[Ultra Hatching Simulator]--
-if game.PlaceId == 6266368276 then
+elseif game.PlaceId == 6266368276 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/UltraHatchingLegends')))()
-end
---[Vortex Simulator]--
-if game.PlaceId == 5846394321 then
+elseif game.PlaceId == 5846394321 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/VortexSimulator')))()
-end
---[ThunderClickers]--
-if game.PlaceId == 6256903862 then
+elseif game.PlaceId == 6256903862 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/ThunderClickers')))()
-end
---[Potion Legends]--
-if game.PlaceId == 6093650231 then
+elseif game.PlaceId == 6093650231 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/PotionLegends')))()
-end
---[Combat Rift]--
-if game.PlaceId == 4952780297 then
+elseif game.PlaceId == 4952780297 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/CombatRift')))()
-end
---[Club Tycoon]--
-if game.PlaceId == 6163803997 then
+elseif game.PlaceId == 6163803997 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/ClubTycoon')))()
-end
---[Dinosaur City]--
-if game.PlaceId == 6495194916 then
+elseif game.PlaceId == 6495194916 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/DinosaurCity')))()
-end
---[Wild Worms]--
-if game.PlaceId == 5542675711 then
+elseif game.PlaceId == 5542675711 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/WildWorms')))()
-end
---[Mining Frenzy]--
-if game.PlaceId == 6233747376 then
+elseif game.PlaceId == 6233747376 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/MiningFrenzy')))()
-end
---[Wizard Masters]--
-if game.PlaceId == 6259813829 then
+elseif game.PlaceId == 6259813829 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/WizardMasters')))()
-end
---[Tapping Gods]--
-if game.PlaceId == 5346447287 then
+elseif game.PlaceId == 5346447287 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/TappingGods')))()
-end
---[Lifting Titans]--
-if game.PlaceId == 6531005851 then
+elseif game.PlaceId == 6531005851 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/LiftingTitans')))()
-end
---[WizardConquest]--
-if game.PlaceId == 6447888702 or game.PlaceId == 6681409037 or game.PlaceId == 6491737703 then
+elseif game.PlaceId == 6447888702 or game.PlaceId == 6681409037 or game.PlaceId == 6491737703 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/WizardConquest')))()
+else
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/NoGame')))()
 end
