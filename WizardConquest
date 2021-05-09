@@ -10,8 +10,8 @@ local function lobby()
     game:GetService("ReplicatedStorage").Remotes.Start:FireServer()
     wait(2)
     local args = {
-        [1] = map,
-        [2] = difficulty,
+        [1] = getenv().map,
+        [2] = getenv().difficulty,
         [3] = true 
     }
     game:GetService("ReplicatedStorage").Remotes.DungeonCreate:FireServer(unpack(args))
