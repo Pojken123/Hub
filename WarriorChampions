@@ -1,0 +1,98 @@
+--[Create Gui]--
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("Warrior Champions")
+local f = w:CreateFolder("Auto Farm")
+local e = w:CreateFolder("Extras")
+local s = w:CreateFolder("Settings")
+
+--[Variables]--
+local player = game.Players.LocalPlayer
+local stuff = {}
+local coregui = game.CoreGui:GetDescendants()
+for i = 1, #coregui do 
+    local v = coregui[i]
+    if v.Name == "Window" and v.ClassName == "ImageLabel" then
+        table.insert(stuff,v)
+    end
+end
+local EGG = "Egg1"
+
+--[Auto Farm]--
+f:Toggle("Auto Swing",function(bool)
+    shared.toggle = bool
+    AutoSwing = bool
+    if AutoSwing == true then
+        spawn(function()
+            while AutoSwing == true do
+                game:GetService("ReplicatedStorage").Knit.Services.CharacterService.RF.Swing:InvokeServer()
+                wait()
+            end
+        end)
+    end
+end)
+
+f:Toggle("Sell Full Dna",function(bool)
+    shared.toggle = bool
+    SellFullDna = bool
+    if SellFullDna == true then
+        spawn(function()
+            while SellFullDna == true do
+                local player = game:GetService("Players").LocalPlayer.Name
+                string = game:GetService("Players").LocalPlayer.PlayerGui.Hud.LeftSidebar.Strength.Frame.TextLabel.Text
+                a,b = string:match("(.+)/(.+)")
+                if a == b then
+                    local playerposition = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame.Position + Vector3.new(0,0,0)
+                    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Resources.Sell.Part.CFrame.Position + Vector3.new(0,0,0))
+                    wait(.2)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(playerposition)
+                    wait(2)
+                end
+                wait(.1)
+            end
+        end)
+    end
+end)
+
+f:Toggle("Auto Open Egg",function(bool)
+    shared.toggle = bool
+    AutoOpenEgg = bool
+    if AutoOpenEgg == true then
+        spawn(function()
+            while AutoOpenEgg == true do
+                game:GetService("ReplicatedStorage").Knit.Services.EggService.RF.PurchaseEgg:InvokeServer(EGG,1,false)
+            end
+        end) 
+    end
+end)
+
+f:Dropdown("Teleport",{"Egg1","Egg2","Egg3"},false,function(Value)
+    EGG = Value
+end)
+
+--[Extras]--
+e:Toggle("Anti Afk",function(bool)
+    shared.toggle = bool
+    AntiAfk = bool
+    if AntiAfk == true then
+        spawn(function()
+            while AntiAfk == true do
+                local bb=game:service'VirtualUser'
+                game:service'Players'.LocalPlayer.Idled:connect(function()
+                    bb:CaptureController()
+                    bb:ClickButton2(Vector2.new())
+                end)
+            end
+        end)
+    end
+end)
+
+--[Settings]--
+s:Bind("Hide Gui Hotkey",Enum.KeyCode.H,function()
+    for i = 1, #stuff do 
+        if stuff[i].Visible == true then
+            stuff[i].Visible = false
+        else
+            stuff[i].Visible = true
+        end
+    end
+end)
