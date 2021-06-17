@@ -65,7 +65,7 @@ f:Toggle("Auto Open Egg",function(bool)
     end
 end)
 
-f:Dropdown("Teleport",{"Egg1","Egg2","Egg3"},false,function(Value)
+f:Dropdown("Choose Egg",{"Egg1","Egg2","Egg3"},false,function(Value)
     EGG = Value
 end)
 
