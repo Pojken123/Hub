@@ -42,6 +42,8 @@ elseif game.PlaceId == 6531005851 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/LiftingTitans')))()
 elseif game.PlaceId == 6788787407 then
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/WarriorChampions')))()
+elseif
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/YouTubeSimulator')))()
 else
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/Pojken123/Hub/main/NoGame')))()
 end
